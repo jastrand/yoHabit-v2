@@ -8,7 +8,7 @@ import { ItemBox, ItemText, ItemButton } from '../components/ItemStyle'
 export const HabitItem = ({ habit }) => {
   const dispatch = useDispatch();
   const [added, setAdded] = useState(false);
-  const [category, setCategory] = useState('daily')
+  const [category, setCategory] = useState('weekly')
 
   const handleOnClick = () => {
     if (!added) {
@@ -29,7 +29,6 @@ export const HabitItem = ({ habit }) => {
         value={category}
         onChange={(event) => setCategory(event.target.value)}
       >
-        <option value='daily'>Daily</option>
         <option value='weekly'>Weekly</option>
         <option value='monthly'>Monthly</option>
       </select>

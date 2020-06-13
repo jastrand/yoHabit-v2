@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { userProfile } from '../reducers/userinfo'
 import { ImageForm } from '../components/ImageForm'
 import { Dashboard } from '../components/Dashboard'
-import { UserDashboard } from '../components/UserDashboard'
 
 export const MyProfile = () => {
   const dispatch = useDispatch()
@@ -39,9 +38,9 @@ export const MyProfile = () => {
         {showForm && <ImageForm function={setShowForm} />}
         <WelcomeText>{message}</WelcomeText>
       </ProfileWrapper>
-      {token && personalHabits &&
+      {token &&
         <ProfileWrapper>
-          <UserDashboard />
+          <Dashboard />
           <Logout onClick={() => LogOut()}>Log out</Logout>
         </ProfileWrapper>}
     </Container>

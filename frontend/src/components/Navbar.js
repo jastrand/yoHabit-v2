@@ -3,25 +3,47 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Mobile = () => {
+const SignedIn = () => {
   return (
-    <MobileWrapper>
+    <LinkWrapper>
       <StyledLink to="/settings">Your settings</StyledLink>
       <StyledLink to="/profile">Dashboard</StyledLink>
       <StyledLink to="/settings">About</StyledLink>
       <StyledLink to="/settings">Contact</StyledLink>
-    </MobileWrapper>
+    </LinkWrapper>
+  )
+}
+
+const SignedOut = () => {
+  return (
+    <LinkWrapper>
+      <StyledLink to="/login">Log in</StyledLink>
+      <StyledLink to="/register">Sign up</StyledLink>
+      <StyledLink to="/settings">About</StyledLink>
+      <StyledLink to="/settings">Contact</StyledLink>
+    </LinkWrapper>
+  )
+}
+
+const MobileSignedIn = () => {
+  return (
+    <LinkWrapperMobile>
+      <StyledLink to="/settings">Your settings</StyledLink>
+      <StyledLink to="/profile">Dashboard</StyledLink>
+      <StyledLink to="/settings">About</StyledLink>
+      <StyledLink to="/settings">Contact</StyledLink>
+    </LinkWrapperMobile>
   )
 }
 
 const MobileSignedOut = () => {
   return (
-    <MobileWrapper>
+    <LinkWrapperMobile>
       <StyledLink to="/login">Log in</StyledLink>
       <StyledLink to="/register">Sign up</StyledLink>
       <StyledLink to="/settings">About</StyledLink>
       <StyledLink to="/settings">Contact</StyledLink>
-    </MobileWrapper>
+    </LinkWrapperMobile>
   )
 }
 
@@ -36,28 +58,18 @@ export const Navbar = () => {
         <LogoLink to="/">YoHabit</LogoLink>
       </Logo>
       {token &&
-        <LinkWrapper>
-          <StyledLink to="/settings">Your settings</StyledLink>
-          <StyledLink to="/profile">Dashboard</StyledLink>
-          <StyledLink to="/settings">About</StyledLink>
-          <StyledLink to="/settings">Contact</StyledLink>
-        </LinkWrapper>}
+        <SignedIn />}
       {!token &&
-        <LinkWrapper>
-          <StyledLink to="/login">Log in</StyledLink>
-          <StyledLink to="/register">Sign up</StyledLink>
-          <StyledLink to="/settings">About</StyledLink>
-          <StyledLink to="/settings">Contact</StyledLink>
-        </LinkWrapper>}
+        <SignedOut />}
+
       <MobileView>
-        <Btn onClick={() => setOpen(prev => !prev)}>
-          <Burger>
-            <Line></Line>
-            <Line></Line>
-            <Line></Line>
-          </Burger>
-        </Btn>
-        {open && token && <Mobile />}
+        <Burger onClick={() => setOpen(prev => !prev)}>
+          <Line></Line>
+          <Line></Line>
+          <Line></Line>
+        </Burger>
+
+        {open && token && <MobileSignedIn />}
         {open && !token && <MobileSignedOut />}
       </MobileView>
 
@@ -65,7 +77,6 @@ export const Navbar = () => {
   )
 }
 const MobileView = styled.div`
-  margin-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -76,7 +87,7 @@ const MobileView = styled.div`
 `
 
 const Navigation = styled.nav`
-  margin: 0;
+  margin: 0 10px;
   padding: 20px 10px 20px 10px;
   display: flex;
   justify-content: space-between;
@@ -86,15 +97,6 @@ const Navigation = styled.nav`
  
   @media (max-width: 830px) {
     align-items: flex-start;
-  }
-`
-
-const MobileWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 830px) {
-    display: none;
   }
 `
 
@@ -122,20 +124,13 @@ const StyledLink = styled(Link)`
   }
 `
 
-const Burger = styled.div`
+const Burger = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
-  @media (min-width: 830px) {
-  display: none;
-}
-`
-const Btn = styled.button`
   background-color: transparent;
   border: none;
-  margin-right: 30px;
 
   &:focus {
     outline: none;
@@ -146,10 +141,9 @@ const Btn = styled.button`
   }
 
   @media (min-width: 830px) {
-    display: none;
-  }
+  display: none;
+}
 `
-
 const Line = styled.span`
   width: 30px;
   height: 5px;
@@ -162,6 +156,16 @@ const LinkWrapper = styled.div`
   justify-content: center;
 
   @media (max-width: 830px) {
-    visibility: hidden;
+    display: none;
+  }
+`
+
+const LinkWrapperMobile = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  @media (min-width: 830px) {
+    display: none;
   }
 `

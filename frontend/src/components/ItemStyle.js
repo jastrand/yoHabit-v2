@@ -6,17 +6,27 @@ export const ItemBox = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${props => props.color};
-  width: 300px;
+  width: ${props => props.width || "300px"};
   border-radius: 8px;
-  margin: 9px;
+  margin: 2px;
   padding: 8px 8px 8px 20px;
   height: 50px;
 `
 export const ItemText = styled.p`
   color: ${props => props.color || "white"};
   margin: 0;
-  font-size: ${props => props.fontSize}
+  font-size: ${props => props.fontSize};
   text-transform: uppercase;
+`
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+export const DashboardView = styled.div`
+  display: flex; 
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: nowrap;
 `
 
 export const Text = styled.p`

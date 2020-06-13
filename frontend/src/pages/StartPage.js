@@ -18,7 +18,6 @@ const Startpage = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
   padding: 10px;
   background: whitesmoke;
   height: 600px;
