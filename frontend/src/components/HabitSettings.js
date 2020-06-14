@@ -10,7 +10,6 @@ export const HabitSettings = () => {
   const habits = useSelector((store) => store.habits)
   return (
     <Section>
-      <Link style={{ color: "black" }} to="/profile">Back</Link>
       {habits.map((habit) => (
         <HabitItem key={habit.id} habit={habit} />
       ))}

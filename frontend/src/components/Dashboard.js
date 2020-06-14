@@ -12,6 +12,7 @@ import {
   TextWrapper
 } from '../components/ItemStyle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styled from 'styled-components'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons'
 import { MonthlyStats } from '../components/MonthlyStats'
@@ -22,7 +23,7 @@ export const Dashboard = () => {
   const habits = useSelector((store) => store.personalHabits.list.items)
   const [open, setOpen] = useState(false)
   const noItems = habits.length <= 0
-  const dateStamp = moment().format('LL')
+  let dateStamp = moment().format('LL')
   const todaysDate = moment().format('LL')
 
   const handleOnClick = (habit) => {
@@ -33,7 +34,7 @@ export const Dashboard = () => {
   return (
     <div>
       {!noItems ? (
-        <div>
+        <Section>
           <ItemText color="tomato" fontSize="25px">Your streak:</ItemText>
           {habits.map((habit) => (
             <div key={habit.id}>
@@ -51,14 +52,14 @@ export const Dashboard = () => {
                 <ItemBox color="whitesmoke" width="40px">
                   <AddButton
                     onClick={() => handleOnClick(habit)}
-                    disabled={todaysDate === habit.dateStamp}
+
                   ><FontAwesomeIcon color="#48c9b0" icon={faCheckCircle} /></AddButton>
                 </ItemBox>
               </DashboardView>
               {open && <MonthlyStats />}
             </div>
           ))}
-        </div>
+        </Section>
       ) : (
           <Text>Go to "<TextLink to="/settings">Your Settings</TextLink>" to pick your habits!</Text>
         )
@@ -66,4 +67,10 @@ export const Dashboard = () => {
     </div >
   )
 }
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 

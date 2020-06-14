@@ -21,7 +21,6 @@ export const personalHabits = createSlice({
         return
       }
     },
-
     // function not working fix later
     removeItem: (state, action) => {
       const { habit } = action.payload

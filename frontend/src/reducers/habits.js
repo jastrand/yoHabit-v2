@@ -18,6 +18,15 @@ const habitData = [
 
 export const habits = createSlice({
   name: 'habits',
-  initialState: habitData
+  initialState: habitData,
+  // reducers: {
+  //   addNewItem: (state, action) => {
+  //     const itemInfo = action.payload
+  //     state.habitData.push(itemInfo)
+  //   }
+  // }
 })
+
+
+
 

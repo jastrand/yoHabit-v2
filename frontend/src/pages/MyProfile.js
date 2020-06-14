@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userProfile } from '../reducers/userinfo'
 import { ImageForm } from '../components/ImageForm'
 import { Dashboard } from '../components/Dashboard'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 export const MyProfile = () => {
   const dispatch = useDispatch()
@@ -13,7 +15,8 @@ export const MyProfile = () => {
   const [showForm, setShowForm] = useState(false)
   const token = useSelector((state) => state.userProfile.user.accessToken)
   const image = useSelector((state) => state.userProfile.user.profileImage)
-  const personalHabits = useSelector((state) => state.userProfile.user.personalHabits)
+  const habits = useSelector((store) => store.personalHabits.list.items)
+
   useEffect(() => {
     fetch('http://localhost:8080/profile', {
       method: 'GET',
@@ -27,17 +30,24 @@ export const MyProfile = () => {
     dispatch(userProfile.actions.logOut())
     history.push('/')
   }
+
+  const numberOfHabits = habits.length
+
   return (
     <Container>
-      <ProfileWrapper>
-        {token && <ImgWrapper>
+      <Wrapper>
+        <ImgWrapper>
           <ImgText onClick={() => setShowForm(!showForm)}>📷</ImgText>
-          {!image && <Image src={require('../assets/default-profile.png')} alt="profile picture"></Image>}
+          {!image && <FontAwesomeIcon color="#48c9b0" size="5x" icon={faUserCircle} />}
           {image && <Image src={image} alt="profile picture"></Image>}
-        </ImgWrapper>}
+        </ImgWrapper>
         {showForm && <ImageForm function={setShowForm} />}
-        <WelcomeText>{message}</WelcomeText>
-      </ProfileWrapper>
+        <TextWrapper>
+          <WelcomeText>{message}</WelcomeText>
+          <Text>Habits:</Text>
+          <Text>{numberOfHabits}</Text>
+        </TextWrapper>
+      </Wrapper>
       {token &&
         <ProfileWrapper>
           <Dashboard />
@@ -49,9 +59,24 @@ export const MyProfile = () => {
 
 const WelcomeText = styled.p`
   font-size: 30px;
-  color: #5DADE2;
+  color: #48c9b0;
   margin: 0 0 0 20px;
-  padding: 0;
+  align-self: flex-start;
+`
+const Text = styled.p`
+  font-size: 15px;
+  font-weight: bold;
+  color: #48c9b0;
+  margin: 0 0 0 20px;
+`
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+  background-color: #ECF0F1;
+  border-radius: 10px;
 `
 
 const ProfileWrapper = styled.div`
@@ -59,6 +84,9 @@ const ProfileWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+const TextWrapper = styled.div`
+  
 `
 
 const Logout = styled.button`
@@ -78,10 +106,7 @@ const Logout = styled.button`
   }
 `
 const ImgWrapper = styled.div`
-  // position: relative;
   border-radius: 50%;
-  border: 2px solid white;
-  padding: 3px;
 `
 
 const Image = styled.img`
@@ -100,7 +125,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: whitesmoke;
+  background-color: rgb(247,247,247);
   padding: 30px;
   margin: 10px;
 `

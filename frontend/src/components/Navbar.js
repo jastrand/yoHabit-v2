@@ -93,7 +93,7 @@ const Navigation = styled.nav`
   justify-content: space-between;
   flex-direction: row; 
   align-items: flex-start;
-  background-color: whitesmoke;
+  background-color: rgb(247,247,247);
  
   @media (max-width: 830px) {
     align-items: flex-start;
@@ -161,6 +161,7 @@ const LinkWrapper = styled.div`
 `
 
 const LinkWrapperMobile = styled.div`
+  padding-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

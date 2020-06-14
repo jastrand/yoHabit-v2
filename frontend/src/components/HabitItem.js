@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { personalHabits } from '../reducers/personalHabits'
-import { ItemBox, ItemText, ItemButton } from '../components/ItemStyle'
+import { ItemBox, ItemText, ItemButton, Category, ItemWrapper } from '../components/ItemStyle'
 
 // This component is for each individual habit, it prints the value on the settings page for habits and adds it to each users personal dashboard.
 
@@ -24,14 +24,16 @@ export const HabitItem = ({ habit }) => {
 
   return (
     <ItemBox color="#85C1E9">
-      <ItemText>{habit.title}</ItemText>
-      <select
-        value={category}
-        onChange={(event) => setCategory(event.target.value)}
-      >
-        <option value='weekly'>Weekly</option>
-        <option value='monthly'>Monthly</option>
-      </select>
+      <ItemWrapper>
+        <ItemText>{habit.title}</ItemText>
+        <Category
+          value={category}
+          onChange={(event) => setCategory(event.target.value)}
+        >
+          <option value='weekly'>Weekly</option>
+          <option value='monthly'>Monthly</option>
+        </Category>
+      </ItemWrapper>
       <ItemButton color={!added ? "#2980B9" : "red"} type="button" onClick={handleOnClick}>
         {!added ? "Add" : "X"}
       </ItemButton>

@@ -2,24 +2,29 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import img from '../assets/header.jpeg'
+import { useSelector } from 'react-redux'
+
 
 export const StartPage = () => {
+  const token = useSelector((state) => state.userProfile.user.accessToken)
+
   return (
     <Startpage>
       <Title>Track your habits</Title>
       <Text>Habits grow stronger and stronger over time and become more and more automatic. So make sure you have the right ones!</Text>
-      <StyledLink to="/login">Log in</StyledLink>
+      {!token && <StyledLink to="/login">Log in</StyledLink>}
     </Startpage>
   )
 }
 
 const Startpage = styled.section`
+  margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: whitesmoke;
+  background: rgb(247,247,247);
   height: 600px;
 `
 
