@@ -12,9 +12,9 @@ export const Settings = () => {
     <SettingsPage>
       <StyledLink style={{ color: "#48c9b0" }} to="/profile"><BackIcon />Back to Dashboard</StyledLink>
       <Text>Please select your habits</Text>
-
       <HabitSettings />
-    </SettingsPage>
+      <HabitInput />
+    </SettingsPage >
   )
 }
 

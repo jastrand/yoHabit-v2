@@ -87,7 +87,7 @@ const MobileView = styled.div`
 `
 
 const Navigation = styled.nav`
-  margin: 0 10px;
+  margin: 0;
   padding: 20px 10px 20px 10px;
   display: flex;
   justify-content: space-between;

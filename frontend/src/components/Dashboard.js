@@ -23,11 +23,9 @@ export const Dashboard = () => {
   const habits = useSelector((store) => store.personalHabits.list.items)
   const [open, setOpen] = useState(false)
   const noItems = habits.length <= 0
-  let dateStamp = moment().format('LL')
-  const todaysDate = moment().format('LL')
 
   const handleOnClick = (habit) => {
-    habits.timeStamp = dateStamp
+    //habits.timeStamp = dateStamp
     dispatch(personalHabits.actions.doneToday(habit));
   }
 
@@ -73,4 +71,3 @@ const Section = styled.section`
   flex-direction: column;
   align-items: center;
 `
-

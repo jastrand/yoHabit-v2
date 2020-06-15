@@ -1,59 +1,76 @@
-// import React, { useState } from 'react'
-// import { useDispatch } from 'react-redux'
-// import { habits } from '../reducers/habits'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+import { habits } from '../reducers/habits'
+import { ItemButton } from '../components/ItemStyle'
 
 
-// export const HabitInput = () => {
-//   const dispatch = useDispatch()
-//   const [inputValue, setInputValue] = useState('')
-//   const [category, setCategory] = useState('weekly')
+export const HabitInput = () => {
+  const dispatch = useDispatch()
+  const [inputValue, setInputValue] = useState('')
+  const habit = useSelector((store) => store.habits.habitData)
+  const createId = habit.indexOf()
 
-//   // handle submit function to dispatch and add new Habit
-//   const handleOnSubmit = (e) => {
-//     e.preventDefault()
+  // handle submit function to dispatch and add new Habit
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+    // Limit the chars to min 3 and max 140
+    if (inputValue.length > 2 && inputValue.length < 100) {
+      // Dispatch the action to save the new habit item to list
+      dispatch(
+        habits.actions.addNewItem({
+          habit: {
+            id: createId,
+            title: inputValue,
+            quantity: 0,
+          }
+        })
+      )
+      // clear the fields after submit
+      setInputValue('')
+    }
 
-//     // Limit the chars to min 3 and max 140
-//     if (inputValue.length > 2 && inputValue.length < 140) {
-//       // Dispatch the action to save the new todo item to list
-//       dispatch(
-//         habits.actions.addNewItem({
-//           title: inputValue,
-//           quantity: 0,
-//           category: category,
-//         })
-//       )
-//       // clear the fields after submit
-//       setInputValue('')
-//       setCategory('')
-//     }
+    else {
+      return alert('OOPS! Chars must be min 3 and max 140')
+    }
+  }
 
-//     else {
-//       return alert('OOPS! Chars must be min 3 and max 140')
-//     }
-//   }
+  return (
+    <Form onSubmit={handleOnSubmit}>
+      <Label>
+        Add your own habit:
+      </Label>
+      <Input
+        type="text"
+        onChange={e => setInputValue(e.target.value)}
+        value={inputValue}
+      ></Input>
+      <ItemButton
+        color="#2980b9"
+        type="submit"
+        value="Add"
+      >Add</ItemButton>
+    </Form>
+  )
+}
 
-//   return (
-//     <form className="todo-input" onSubmit={handleOnSubmit}>
-//       What's cooking?
-//       <input
-//         type="text"
-//         onChange={e => setInputValue(e.target.value)}
-//         value={inputValue}
-//       ></input>
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
-//       <div class="category">
-//         <select
-//           value={category}
-//           onChange={(event) => setCategory(event.target.value)}
-//         >
-//           <option value='weekly'>Weekly</option>
-//           <option value='monthly'>Monthly</option>
-//         </select>
-//       </div>
-//       <input
-//         type="submit"
-//         value="Add todo"
-//       ></input>
-//     </form>
-//   )
-// }
+const Input = styled.input`
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid;
+  border-color: #86c1e9;
+  margin: 10px;
+`
+
+const Label = styled.label`
+  font-size: 20px;
+  color: #86c1e9;  
+  margin-right: 10px;
+`

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { ItemText } from '../components/ItemStyle'
 import Calendar from 'react-calendar'
@@ -8,7 +8,7 @@ import moment from 'moment'
 export const MonthlyStats = () => {
 
   const startDate = new Date(2020, 0, 1)
-  const endDate = new Date(2021, 0, 1)
+  const endDate = new Date()
 
   return (
     <Section>

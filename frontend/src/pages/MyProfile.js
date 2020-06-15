@@ -37,7 +37,7 @@ export const MyProfile = () => {
     <Container>
       <Wrapper>
         <ImgWrapper>
-          <ImgText onClick={() => setShowForm(!showForm)}>📷</ImgText>
+          <ImgText onClick={() => setShowForm(!showForm)}><span role="img" aria-label="Camera">📷</span></ImgText>
           {!image && <FontAwesomeIcon color="#48c9b0" size="5x" icon={faUserCircle} />}
           {image && <Image src={image} alt="profile picture"></Image>}
         </ImgWrapper>

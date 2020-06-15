@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import img from '../assets/header.jpeg'
+import img from '../assets/Rainbow-Vortex.svg'
 import { useSelector } from 'react-redux'
 
 
@@ -18,20 +18,25 @@ export const StartPage = () => {
 }
 
 const Startpage = styled.section`
-  margin: 10px;
+  margin: 0;
   display: flex;
+  width: 100%;
+  background-image: url(${img}); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  background: rgb(247,247,247);
   height: 600px;
 `
 
 const Title = styled.h1`
   font-size: 60px;
-  color: #48c9b0;
+  color: #fff;
   margin: 0;
+  text-shadow: #48c9b0 3px 3px 15px;
+  padding: 20px;
   max-width: 500px;
 
   @media (max-width: 700px) {
@@ -40,9 +45,10 @@ const Title = styled.h1`
 `
 const Text = styled.h2`
   font-size: 20px;
-  color: #48c9b0;
-  font-weight: lighter;
+  color: #fff;
+  text-shadow: #48c9b0 3px 3px 15px;
   margin: 5px;
+  padding: 0 20px;
   max-width: 600px;
 `
 
