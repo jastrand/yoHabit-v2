@@ -14,11 +14,11 @@ export const MonthlyStats = ({ timeStamp }) => {
     <Section>
       <Container>
         <ItemText style={{ color: "white", fontSize: "23px" }}>Last 7 days:</ItemText>
-        {/* {weekdayshort.map((day) => (
-        <p key={day}>
-          {day}
-        </p>
-      ))} */}
+        {timeStamp.map((time) => (
+          <p key={time}>
+            {time}
+          </p>
+        ))}
       </Container>
       <Container>
         <ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText>

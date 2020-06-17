@@ -27,7 +27,6 @@ export const Dashboard = () => {
   console.log(startTime)
 
   const handleOnClick = (habit) => {
-    //habits.timeStamp = dateStamp
     dispatch(personalHabits.actions.doneToday(habit));
   }
 
@@ -50,7 +49,7 @@ export const Dashboard = () => {
                     <TextWrapper>
                       <ItemText color="black" fontSize="20px">{habit.title}</ItemText>
                       <ItemText color="white">{`${habit.category === 'weekly' ? "This week: " : "This month: "}`}
-                        {habit.quantity} times</ItemText>
+                        {habit.timeStamp.length} times</ItemText>
                     </TextWrapper>
                     <IconWrapper onClick={() => setOpen(opened ? false : i)}>
                       <FontAwesomeIcon color="white" icon={faAngleDoubleDown} />

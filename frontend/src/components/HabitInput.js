@@ -21,8 +21,7 @@ export const HabitInput = () => {
         habits.actions.addNewItem({
           habit: {
             id: createId,
-            title: inputValue,
-            quantity: 0
+            title: inputValue
           }
         })
       )

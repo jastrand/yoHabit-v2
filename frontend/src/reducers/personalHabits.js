@@ -16,7 +16,7 @@ export const personalHabits = createSlice({
       const timeStamp = moment().unix()
       const existingItem = state.list.items.find((item) => item.id === action.payload.id)
       if (!existingItem) {
-        state.list.items.push({ ...action.payload, timeStamp: [timeStamp] })
+        state.list.items.push({ ...action.payload, timeStamp: [] })
       } else {
         return
       }
@@ -28,8 +28,13 @@ export const personalHabits = createSlice({
     },
     doneToday: (state, action) => {
       const timeStamp = moment().unix();
-      const startTime = moment().startOf('day').unix();
       const existingItem = state.list.items.find((item) => item.id === action.payload.id)
+
+      if (existingItem.timeStamp.length === 0) {
+        existingItem.timeStamp.push(timeStamp)
+        return
+      }
+      const startTime = moment().startOf('day').unix();
       const lastEntry = existingItem.timeStamp[existingItem.timeStamp.length - 1]
       console.log(lastEntry)
       console.log(startTime)
