@@ -7,16 +7,17 @@ import moment from 'moment'
 
 export const MonthlyStats = ({ timeStamp }) => {
 
+  // calender view is limited with following start/end:
   const startDate = new Date(2020, 0, 1)
   const endDate = new Date()
-  console.log(timeStamp)
+
   return (
     <Section>
       <Container>
         <ItemText style={{ color: "white", fontSize: "23px" }}>Last 7 days:</ItemText>
-        {timeStamp.map((time) => (
-          <p key={time}>
-            {time}
+        {timeStamp.map((time, index) => (
+          <p key={index}>
+            {moment.unix(time).format("dddd")}
           </p>
         ))}
       </Container>

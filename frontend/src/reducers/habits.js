@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { personalHabits } from './personalHabits'
 
 // This reducer is the generic daily habits
 // User will have possibility to add its own (stretch goal)
@@ -28,3 +29,19 @@ export const habits = createSlice({
     }
   }
 })
+
+// put the thunk here with accesstoken and habit
+// export const fetchDashboard = () => {
+//   return (dispatch) => {
+//     fetch(`http://localhost:8080/users/${id}`, {
+//       method: 'POST',
+//       body: JSON.stringify({ personalHabits: personalHabits }),
+//       headers: { 'Content-Type': 'application/json' }
+//     })
+//       .then(res => res.json())
+//       .then((data) => {
+//         dispatch(userProfile.actions.setProfile({ personalHabits: data.personalHabits }))
+//       })
+//   }
+// }
+

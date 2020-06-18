@@ -9,8 +9,8 @@ export const HabitSettings = () => {
   const habits = useSelector((store) => store.habits.habitData)
   return (
     <Section>
-      {habits.map((habit) => (
-        <HabitItem key={habit.id} habit={habit} />
+      {habits.map((habit, index) => (
+        <HabitItem key={index} habit={habit} />
       ))}
     </Section>
   )

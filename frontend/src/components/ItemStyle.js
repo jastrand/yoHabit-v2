@@ -92,6 +92,9 @@ export const IconWrapper = styled.button`
     cursor: pointer;
   }
 `
+export const Tooltip = styled.div`
+  display: none;
+`
 
 export const AddButton = styled.button`
   border: none;
@@ -106,3 +109,7 @@ export const AddButton = styled.button`
     cursor: pointer;
   }
 `
+
+
+
+

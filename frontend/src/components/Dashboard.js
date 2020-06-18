@@ -9,7 +9,8 @@ import {
   TextLink,
   AddButton,
   DashboardView,
-  TextWrapper
+  TextWrapper,
+  Tooltip
 } from '../components/ItemStyle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
@@ -25,7 +26,6 @@ export const Dashboard = () => {
   const noItems = habits.length <= 0
   const startTime = moment().startOf('day').unix();
   console.log(startTime)
-
   const handleOnClick = (habit) => {
     dispatch(personalHabits.actions.doneToday(habit));
   }
@@ -58,8 +58,9 @@ export const Dashboard = () => {
                   <ItemBox color="whitesmoke" width="40px">
                     <AddButton
                       onClick={() => handleOnClick(habit)}
-                      disabled={disabled ? "disabled" : ""}
-                    ><FontAwesomeIcon color={disabled ? "e4e9ed" : "#48c9b0"} icon={faCheckCircle} /></AddButton>
+                      disabled={disabled ? "disabled" : ""}>
+                      <FontAwesomeIcon color={disabled ? "e4e9ed" : "#48c9b0"} icon={faCheckCircle} /></AddButton>
+                    {disabled && <Tooltip>Already done today</Tooltip>}
                   </ItemBox>
                 </DashboardView>
                 {opened && <MonthlyStats timeStamp={habit.timeStamp} />}

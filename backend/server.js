@@ -58,7 +58,8 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-// Start defining your routes here
+// Routes goes here
+// Change this route not to display all users
 app.get('/', async (req, res) => {
   const users = await User.find()
   res.json(users)
@@ -97,11 +98,11 @@ app.get('/profile', async (req, res) => {
   res.json({ message: `Welcome ${user.name}` })
 })
 
-//find user and update profile image
+//find user and update profile 
 app.post('/users/:id', async (req, res) => {
   const user = await User.findOneAndUpdate({ _id: req.params.id },
     { profileImage: req.body.image, personalHabits: req.body.personalHabits }, { new: true })
-  res.json({ imageURL: user.profileImage, personalHabits: personalHabits })
+  res.json({ imageURL: user.profileImage, personalHabits: user.personalHabits })
 })
 
 // Start the server
