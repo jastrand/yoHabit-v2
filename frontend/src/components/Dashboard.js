@@ -31,9 +31,9 @@ export const Dashboard = () => {
   }
 
   return (
-    <div>
+    <Container>
       {!noItems ? (
-        <Section>
+        <div>
           <ItemText color="tomato" fontSize="25px">Your streak:</ItemText>
           {habits.map((habit, i) => {
             console.log(habit)
@@ -43,7 +43,7 @@ export const Dashboard = () => {
             console.log(timeStamp)
             console.log(disabled)
             return (
-              <div key={i}>
+              <Container key={i}>
                 <DashboardView>
                   <ItemBox color="#5dade2" >
                     <TextWrapper>
@@ -64,15 +64,15 @@ export const Dashboard = () => {
                   </ItemBox>
                 </DashboardView>
                 {opened && <MonthlyStats timeStamp={habit.timeStamp} />}
-              </div>
+              </Container>
             )
           })}
-        </Section>
+        </div>
       ) : (
           <Text>Go to "<TextLink to="/settings">Your Settings</TextLink>" to pick your habits!</Text>
         )
       }
-    </div >
+    </Container>
   )
 }
 
@@ -80,4 +80,8 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+const Container = styled.div`
+  
 `

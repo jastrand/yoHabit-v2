@@ -127,7 +127,7 @@ const Container = styled.div`
   justify-content: center;
   background-color: rgb(247,247,247);
   padding: 30px;
-  margin: 10px;
+  margin: 5px 0 5px 0;
 `
 
 const ImgText = styled.button`

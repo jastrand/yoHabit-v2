@@ -32,6 +32,7 @@ const MobileSignedIn = () => {
       <StyledLink to="/profile">Dashboard</StyledLink>
       <StyledLink to="/settings">About</StyledLink>
       <StyledLink to="/settings">Contact</StyledLink>
+      <StyledLink to="/settings">Contact</StyledLink>
     </LinkWrapperMobile>
   )
 }

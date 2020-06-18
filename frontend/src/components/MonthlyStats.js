@@ -11,15 +11,30 @@ export const MonthlyStats = ({ timeStamp }) => {
   const startDate = new Date(2020, 0, 1)
   const endDate = new Date()
 
+  // get an array of the last 7 days by name of the day
+  const dates = [...Array(7)].map((_, i) => {
+    const day = new Date()
+    day.setDate(day.getDate() - i)
+    return moment(day).format("dddd")
+  })
+  console.log(dates)
+
+  // if name of day and timestamp matches, habit is completed
+
+
   return (
     <Section>
       <Container>
         <ItemText style={{ color: "white", fontSize: "23px" }}>Last 7 days:</ItemText>
-        {timeStamp.map((time, index) => (
-          <p key={index}>
-            {moment.unix(time).format("dddd")}
-          </p>
-        ))}
+        <DateWrapper>
+          {dates.reverse().map((day, index) => (
+            <Dates key={index}>{day}</Dates>
+          ))}
+
+          {timeStamp.map((time, index) => (
+            <Dates key={index}>{moment.unix(time).format("dddd")}</Dates>
+          ))}
+        </DateWrapper>
       </Container>
       <Container>
         <ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText>
@@ -45,4 +60,11 @@ export const Container = styled.div`
 `
 const Section = styled.section`
     display: flex;
+`
+const DateWrapper = styled.section`
+  
+`
+
+const Dates = styled.p`
+ 
 `
