@@ -11,6 +11,8 @@ import { userProfile } from 'reducers/userinfo'
 import { habits } from 'reducers/habits'
 import { personalHabits } from 'reducers/personalHabits'
 import { Navbar } from './components/Navbar'
+import thunk from 'redux-thunk'
+import { applyMiddleware, compose } from '@reduxjs/toolkit'
 
 
 const saveToLocalStorage = (state) => {
@@ -40,8 +42,8 @@ const reducer = combineReducers({
 })
 
 const persistedState = loadFromLocalStorage()
-
-const store = createStore(reducer, persistedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, persistedState, composeEnhancer(applyMiddleware(thunk)))
 
 store.subscribe(() => saveToLocalStorage(store.getState()))
 

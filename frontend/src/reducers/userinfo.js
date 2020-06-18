@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { personalHabits } from '../reducers/personalHabits'
 
 const initialState = {
   user: {
@@ -6,7 +7,7 @@ const initialState = {
     accessToken: false,
     loggedIn: false,
     profileImage: false,
-    personalHabits: false
+    personalHabits: []
   }
 }
 
@@ -31,24 +32,34 @@ export const userProfile = createSlice({
       state.user.loggedIn = false
     },
     setProfile: (state, action) => {
-      const { profileImage, personalHabits } = action.payload
+      const { id, profileImage, personalHabits } = action.payload
       state.user.profileImage = profileImage
+      state.user.id = id
       state.user.personalHabits = personalHabits
     },
 
   }
 })
 
-// export const fetchFood = (code) => {
-//   const FOOD_URL = `https://world.openfoodfacts.org/api/v0/product/${code}.json`;
-//   return (dispatch) => {
-//     dispatch(ui.actions.setLoading(true))
-//     fetch(FOOD_URL)
-//       .then((res) => res.json())
-//       .then((json) => {
-//         dispatch(nutritionInfo.actions.setNutritionInfo(json))
-//         dispatch(ui.actions.setLoading(false))
-//       })
-//   }
-// }
+export const fetchDashboard = ({ id, habit, accessToken, category }) => {
+  console.log(id)
+  console.log(personalHabits)
+  const URL = `http://localhost:8080/users/${id}`
+  console.log(URL)
+  return (dispatch) => {
+    fetch(URL, {
+      method: 'POST',
+      body: JSON.stringify({ personalHabits: personalHabits }),
+      headers: { 'Content-Type': 'application/json', 'Authorization': accessToken }
+    })
+      .then(res => res.json())
+      .then((data) => {
+        dispatch(personalHabits.actions.addItem({ ...habit, category }))
+        dispatch(userProfile.actions.setProfile({ id, personalHabits }))
+
+        console.log(habit)
+      })
+  }
+
+}
 

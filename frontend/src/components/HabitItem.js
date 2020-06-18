@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { personalHabits } from '../reducers/personalHabits'
-import { fetchDashboard } from '../reducers/habits'
+import { habits } from '../reducers/habits'
+import { userinfo } from '../reducers/userinfo'
+import { fetchDashboard } from '../reducers/userinfo'
 import { ItemBox, ItemText, ItemButton, Category, ItemWrapper } from '../components/ItemStyle'
 import moment from 'moment';
 
@@ -12,10 +15,12 @@ export const HabitItem = ({ habit }) => {
   const dispatch = useDispatch();
   const [added, setAdded] = useState(false);
   const [category, setCategory] = useState('weekly')
-  console.log(habit)
+  const id = useSelector((state) => state.userProfile.user.id)
+
   const handleOnClick = () => {
     if (!added) {
-      dispatch(personalHabits.actions.addItem({ ...habit, category }));
+      //dispatch(personalHabits.actions.addItem({ ...habit, category }))
+      dispatch(fetchDashboard({ id }))
     } else {
       dispatch(personalHabits.actions.removeItem({
         habit: habit

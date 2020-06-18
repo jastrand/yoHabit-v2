@@ -43,7 +43,7 @@ export const Dashboard = () => {
             console.log(timeStamp)
             console.log(disabled)
             return (
-              <div key={habit.id}>
+              <div key={i}>
                 <DashboardView>
                   <ItemBox color="#5dade2" >
                     <TextWrapper>
