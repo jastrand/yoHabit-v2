@@ -4,6 +4,9 @@ import { ItemText } from '../components/ItemStyle'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import moment from 'moment'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
 export const MonthlyStats = ({ timeStamp }) => {
 
@@ -19,6 +22,15 @@ export const MonthlyStats = ({ timeStamp }) => {
   })
   console.log(dates)
 
+  const getTimes = timeStamp.map((time) => {
+    return moment.unix(time).format("dddd")
+  })
+  console.log(getTimes)
+
+  const combine = dates.concat(getTimes)
+  console.log(combine)
+
+
   // if name of day and timestamp matches, habit is completed
 
 
@@ -28,11 +40,14 @@ export const MonthlyStats = ({ timeStamp }) => {
         <ItemText style={{ color: "white", fontSize: "23px" }}>Last 7 days:</ItemText>
         <DateWrapper>
           {dates.reverse().map((day, index) => (
-            <Dates key={index}>{day}</Dates>
-          ))}
-
-          {timeStamp.map((time, index) => (
-            <Dates key={index}>{moment.unix(time).format("dddd")}</Dates>
+            <Dates key={index}>{day}
+              <Span>
+                {day == getTimes ?
+                  <FontAwesomeIcon color="green" icon={faCheckSquare} />
+                  :
+                  <FontAwesomeIcon color="red" icon={faTimesCircle} />}
+              </Span>
+            </Dates>
           ))}
         </DateWrapper>
       </Container>
@@ -62,9 +77,12 @@ const Section = styled.section`
     display: flex;
 `
 const DateWrapper = styled.section`
-  
+  justify-content: flex-start;
 `
-
+const Span = styled.span`
+  margin-left: 10px;
+`
 const Dates = styled.p`
- 
+  color: whitesmoke;
+  font-size: 20px;
 `

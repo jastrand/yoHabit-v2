@@ -49,7 +49,7 @@ export const fetchDashboard = ({ id, habit, accessToken, category }) => {
   return (dispatch) => {
     fetch(URL, {
       method: 'POST',
-      body: JSON.stringify({ personalHabits: habit }),
+      body: JSON.stringify({ personalHabits }),
       headers: { 'Content-Type': 'application/json', 'Authorization': accessToken }
     })
       .then(res => res.json())
