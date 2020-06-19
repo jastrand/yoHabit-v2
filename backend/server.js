@@ -32,11 +32,13 @@ const User = mongoose.model('User', {
     type: String,
     default: ''
   },
-  personalHabits: {
-    type: [],
-    default: []
-  }
+  personalHabits: [{
+    type: String,
+    default: ''
+  }],
 })
+
+
 
 const authenticateUser = async (req, res, next) => {
   const user = await User.findOne({ accessToken: req.header('Authorization') })

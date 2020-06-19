@@ -7,6 +7,8 @@ import { LogIn } from './pages/LogIn'
 import { MyProfile } from './pages/MyProfile'
 import { StartPage } from './pages/StartPage'
 import { Settings } from './pages/Settings'
+import { About } from './pages/About'
+import { Contact } from './pages/Contact'
 import { userProfile } from 'reducers/userinfo'
 import { habits } from 'reducers/habits'
 import { personalHabits } from 'reducers/personalHabits'
@@ -58,7 +60,9 @@ export const App = () => {
           <Route path='/login' exact ><LogIn /></Route>
           <Route path='/register' exact ><SignUp /></Route>
           <Route path='/profile' exact ><MyProfile /></Route>
-          <Route path='/settings' exact ><Settings /></Route>>
+          <Route path='/settings' exact ><Settings /></Route>
+          <Route path='/about' exact ><About /></Route>
+          <Route path='/contact' exact ><Contact /></Route>
         </Switch>
       </BrowserRouter>
     </Provider>

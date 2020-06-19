@@ -10,7 +10,7 @@ export const ItemBox = styled.div`
   border-radius: 8px;
   margin: 5px;
   padding: 12px 8px 8px 12px;
-  height: 50px;
+  height: 60px;
 `
 
 export const Category = styled.select`
@@ -18,7 +18,7 @@ export const Category = styled.select`
   color: #2980b9;
   font-weight: bold;
   border: none;
-  padding: 10px;
+  padding: 5px;
   font-family: 'Roboto';
   width: fit-content;
   margin: 5px;
@@ -33,12 +33,13 @@ export const ItemWrapper = styled.section`
 export const ItemText = styled.p`
   color: ${props => props.color || "white"};
   margin: 0;
-  font-size: ${props => props.fontSize};
+  font-size: ${props => props.fontSize || "20px"};
   text-transform: uppercase;
 `
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  z-index: 999;
 `
 export const DashboardView = styled.div`
   display: flex; 
@@ -86,6 +87,7 @@ export const IconWrapper = styled.button`
   font-size: 18px;
   text-align: center;
   padding: 0;
+  z-index: 999;
 
   &:hover {
     transform: scale(1.3);

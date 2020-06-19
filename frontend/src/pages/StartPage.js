@@ -13,6 +13,7 @@ export const StartPage = () => {
       <Title>Track your habits</Title>
       <Text>Habits grow stronger and stronger over time and become more and more automatic. So make sure you have the right ones!</Text>
       {!token && <StyledLink to="/login">Log in</StyledLink>}
+      {token && <StyledLink to="/profile">To Dashboard</StyledLink>}
     </Startpage>
   )
 }
@@ -53,8 +54,13 @@ const Text = styled.h2`
 `
 
 const StyledLink = styled(Link)`
-  color: #48c9b0;
+  color: #fff;
   text-transform: uppercase;
   margin-top: 10px;
-  font-size: 15px;
+  font-size: 20px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `

@@ -8,8 +8,8 @@ const SignedIn = () => {
     <LinkWrapper>
       <StyledLink to="/settings">Your settings</StyledLink>
       <StyledLink to="/profile">Dashboard</StyledLink>
-      <StyledLink to="/settings">About</StyledLink>
-      <StyledLink to="/settings">Contact</StyledLink>
+      <StyledLink to="/about">About</StyledLink>
+      <StyledLink to="/contact">Contact</StyledLink>
     </LinkWrapper>
   )
 }
@@ -19,8 +19,8 @@ const SignedOut = () => {
     <LinkWrapper>
       <StyledLink to="/login">Log in</StyledLink>
       <StyledLink to="/register">Sign up</StyledLink>
-      <StyledLink to="/settings">About</StyledLink>
-      <StyledLink to="/settings">Contact</StyledLink>
+      <StyledLink to="/about">About</StyledLink>
+      <StyledLink to="/contact">Contact</StyledLink>
     </LinkWrapper>
   )
 }
@@ -30,9 +30,8 @@ const MobileSignedIn = () => {
     <LinkWrapperMobile>
       <StyledLink to="/settings">Your settings</StyledLink>
       <StyledLink to="/profile">Dashboard</StyledLink>
-      <StyledLink to="/settings">About</StyledLink>
-      <StyledLink to="/settings">Contact</StyledLink>
-      <StyledLink to="/settings">Contact</StyledLink>
+      <StyledLink to="/about">About</StyledLink>
+      <StyledLink to="/contact">Contact</StyledLink>
     </LinkWrapperMobile>
   )
 }
@@ -42,8 +41,8 @@ const MobileSignedOut = () => {
     <LinkWrapperMobile>
       <StyledLink to="/login">Log in</StyledLink>
       <StyledLink to="/register">Sign up</StyledLink>
-      <StyledLink to="/settings">About</StyledLink>
-      <StyledLink to="/settings">Contact</StyledLink>
+      <StyledLink to="/about">About</StyledLink>
+      <StyledLink to="/contact">Contact</StyledLink>
     </LinkWrapperMobile>
   )
 }

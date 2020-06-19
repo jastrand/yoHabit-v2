@@ -34,7 +34,8 @@ const SettingsPage = styled.section`
 `
 
 const StyledLink = styled(Link)`
-  margin-bottom: 10px;  
+  margin-bottom: 10px; 
+  margin-top: 30px; 
   font-size: 20px;
   display: flex;
   align-items: center;

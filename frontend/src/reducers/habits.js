@@ -14,7 +14,7 @@ const initialState = {
     { id: 5, title: 'Read a book' },
     { id: 6, title: 'Watch YouTube' },
     { id: 7, title: 'Eat a vegetarian meal' },
-    { id: 8, title: 'Say something nice to a friend' },
+    { id: 8, title: 'Make someone smile' },
     { id: 9, title: 'Take vitamins' },
     { id: 10, title: 'Work out' }
   ]

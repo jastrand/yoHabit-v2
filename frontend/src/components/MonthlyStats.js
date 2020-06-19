@@ -27,8 +27,6 @@ export const MonthlyStats = ({ timeStamp }) => {
   })
   console.log(getTimes)
 
-  const combine = dates.concat(getTimes)
-  console.log(combine)
 
 
   // if name of day and timestamp matches, habit is completed
@@ -37,11 +35,11 @@ export const MonthlyStats = ({ timeStamp }) => {
   return (
     <Section>
       <Container>
-        <ItemText style={{ color: "white", fontSize: "23px" }}>Last 7 days:</ItemText>
+        <TitleSpan><ItemText style={{ color: "white", fontSize: "25px" }}>Last 7 days:</ItemText></TitleSpan>
         <DateWrapper>
           {dates.reverse().map((day, index) => (
             <Dates key={index}>{day}
-              <Span>
+              <Span className={day === getTimes ? "green-circle" : "red-circle"}>
                 {day == getTimes ?
                   <FontAwesomeIcon color="green" icon={faCheckSquare} />
                   :
@@ -52,7 +50,7 @@ export const MonthlyStats = ({ timeStamp }) => {
         </DateWrapper>
       </Container>
       <Container>
-        <ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText>
+        <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>
         <Calendar
           minDate={startDate}
           maxDate={endDate}
@@ -65,7 +63,7 @@ export const MonthlyStats = ({ timeStamp }) => {
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     background-color: #48c9b0;
     width: 300px;
     height: 400px;
@@ -81,6 +79,9 @@ const DateWrapper = styled.section`
 `
 const Span = styled.span`
   margin-left: 10px;
+`
+const TitleSpan = styled.span`
+  align-self: center;
 `
 const Dates = styled.p`
   color: whitesmoke;

@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { personalHabits } from '../reducers/personalHabits'
-import { habits } from '../reducers/habits'
-import { userinfo } from '../reducers/userinfo'
 import { fetchDashboard } from '../reducers/userinfo'
 import { ItemBox, ItemText, ItemButton, Category, ItemWrapper } from '../components/ItemStyle'
-import moment from 'moment';
 
 
 // This component is for each individual habit, it prints the value on the settings page for habits and adds it to each users personal dashboard.
