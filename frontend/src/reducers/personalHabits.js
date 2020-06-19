@@ -13,10 +13,10 @@ export const personalHabits = createSlice({
   initialState: initialState,
   reducers: {
     addItem: (state, action) => {
-      const timeStamp = moment().format('lll');
+      const timeStamp = moment().unix()
       const existingItem = state.list.items.find((item) => item.id === action.payload.id)
       if (!existingItem) {
-        state.list.items.push({ ...action.payload, quantity: 0, timeStamp: timeStamp })
+        state.list.items.push({ ...action.payload, timeStamp: [timeStamp] })
       } else {
         return
       }
@@ -27,12 +27,16 @@ export const personalHabits = createSlice({
       state.list.items = state.list.items.filter((item, index) => item.id !== habit.id)
     },
     doneToday: (state, action) => {
-      const timeStamp = moment().format('lll');
-      const startTime = moment().startOf('day').fromNow();
+      const timeStamp = moment().unix();
+      const startTime = moment().startOf('day').unix();
       const existingItem = state.list.items.find((item) => item.id === action.payload.id)
-
-      if (timeStamp > startTime) {
-        existingItem.quantity += 1
+      const lastEntry = existingItem.timeStamp[existingItem.timeStamp.length - 1]
+      console.log(lastEntry)
+      console.log(startTime)
+      console.log(existingItem)
+      if (lastEntry < startTime) {
+        console.log("tjaaa")
+        existingItem.timeStamp.push(timeStamp)
 
       } else {
         return;

@@ -24,7 +24,7 @@ const Text = styled.h1`
 `
 
 const SettingsPage = styled.section`
-  margin: 10px;
+  margin-top: 3px;
   display: flex;
   flex-direction: column;
   justify-content: center;

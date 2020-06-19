@@ -5,11 +5,11 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import moment from 'moment'
 
-export const MonthlyStats = () => {
+export const MonthlyStats = ({ timeStamp }) => {
 
   const startDate = new Date(2020, 0, 1)
   const endDate = new Date()
-
+  console.log(timeStamp)
   return (
     <Section>
       <Container>

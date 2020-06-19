@@ -9,7 +9,7 @@ export const HabitInput = () => {
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState('')
   const habit = useSelector((store) => store.habits.habitData)
-  const createId = habit.indexOf()
+  const createId = habit.length + 1
 
   // handle submit function to dispatch and add new Habit
   const handleOnSubmit = (e) => {
@@ -22,7 +22,7 @@ export const HabitInput = () => {
           habit: {
             id: createId,
             title: inputValue,
-            quantity: 0,
+            quantity: 0
           }
         })
       )
