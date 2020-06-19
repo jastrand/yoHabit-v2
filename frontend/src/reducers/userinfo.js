@@ -41,25 +41,25 @@ export const userProfile = createSlice({
   }
 })
 
-// export const fetchDashboard = ({ id, habit, accessToken, category }) => {
-//   console.log(id)
-//   console.log(personalHabits)
-//   const URL = `http://localhost:8080/users/${id}`
-//   console.log(URL)
-//   return (dispatch) => {
-//     fetch(URL, {
-//       method: 'POST',
-//       body: JSON.stringify({ personalHabits: { habit } }),
-//       headers: { 'Content-Type': 'application/json', 'Authorization': accessToken }
-//     })
-//       .then(res => res.json())
-//       .then((data) => {
-//         dispatch(personalHabits.actions.addItem({ ...habit, category }))
-//         dispatch(userProfile.actions.setProfile({ id, personalHabits }))
+export const fetchDashboard = ({ id, habit, accessToken, category }) => {
+  console.log(id)
+  console.log(personalHabits)
+  const URL = `http://localhost:8080/users/${id}`
+  console.log(URL)
+  return (dispatch) => {
+    fetch(URL, {
+      method: 'POST',
+      body: JSON.stringify({ personalHabits: habit }),
+      headers: { 'Content-Type': 'application/json', 'Authorization': accessToken }
+    })
+      .then(res => res.json())
+      .then((data) => {
+        dispatch(personalHabits.actions.addItem({ ...habit, category }))
+        dispatch(userProfile.actions.setProfile({ id }))
 
-//         console.log(habit)
-//       })
-//   }
+        console.log(habit)
+      })
+  }
 
-// }
+}
 
