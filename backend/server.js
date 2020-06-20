@@ -63,6 +63,8 @@ app.use(bodyParser.json())
 // Routes goes here
 
 app.get('/', async (req, res) => {
+  const users = await User.find()
+  res.json(users)
 })
 
 
