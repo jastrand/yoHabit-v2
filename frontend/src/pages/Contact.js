@@ -48,6 +48,7 @@ const Container = styled.section`
 const Text = styled.h2`
   font-size: 25px;
   font-weight: lighter;
+  text-align: center;
 `
 const TextSection = styled.div`
   display: flex;  

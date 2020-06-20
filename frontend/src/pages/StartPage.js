@@ -27,9 +27,10 @@ const Startpage = styled.section`
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 600px;
+  height: 700px;
+  padding-top: 200px;
 `
 
 const Title = styled.h1`

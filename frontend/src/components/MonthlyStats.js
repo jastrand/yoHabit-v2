@@ -14,7 +14,7 @@ export const MonthlyStats = ({ timeStamp }) => {
   const startDate = new Date(2020, 0, 1)
   const endDate = new Date()
 
-  // get an array of the last 7 days by name of the day
+  // array of the last 7 days by name of the day
   const dates = [...Array(7)].map((_, i) => {
     const day = new Date()
     day.setDate(day.getDate() - i)
@@ -22,12 +22,26 @@ export const MonthlyStats = ({ timeStamp }) => {
   })
   console.log(dates)
 
+  // array of which timeStamps each user have and return from unix to name of the day
   const getTimes = timeStamp.map((time) => {
     return moment.unix(time).format("dddd")
   })
   console.log(getTimes)
 
-  //const tileClassName = dates.map((day) => day == getTimes ? "green" : "red")
+
+
+  // checks if timeStamp matches the name of the day
+  // const habitDone = () => {
+  //   dates.map((day) => {
+  //     if (day === getTimes) {
+  //       return 
+  //     } else {
+  //       <FontAwesomeIcon color="red" icon={faTimesCircle} />
+  //     }
+  //   })
+  // }
+
+  const tileClassName = getTimes.length === 2 ? "green" : "red"
 
   // const howManyTimes =
   //   getTimes.length === 0 ? "Time to get started!!" ||
@@ -41,7 +55,7 @@ export const MonthlyStats = ({ timeStamp }) => {
           {dates.reverse().map((day, index) => (
             <Dates key={index}>{day}
               <Span>
-                {day === getTimes ?
+                {getTimes.some((time) => time === day) ?
                   <FontAwesomeIcon color="green" icon={faCheckSquare} />
                   :
                   <FontAwesomeIcon color="red" icon={faTimesCircle} />}
@@ -49,12 +63,12 @@ export const MonthlyStats = ({ timeStamp }) => {
             </Dates>
           ))}
         </DateWrapper>
-        <StreakCount>Way to go! {getTimes.length}/7 days completed!</StreakCount>
+        <StreakCount>{getTimes.length}/7 days completed</StreakCount>
       </Container>
       <Container>
         <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>
         <Calendar
-          //tileClassName={tileClassName}
+          tileClassName={tileClassName}
           minDate={startDate}
           maxDate={endDate}
         />
@@ -96,4 +110,6 @@ const StreakCount = styled.p`
 const Dates = styled.p`
   color: whitesmoke;
   font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
 `
