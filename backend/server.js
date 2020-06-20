@@ -61,10 +61,8 @@ app.use(cors())
 app.use(bodyParser.json())
 
 // Routes goes here
-// Change this route not to display all users
+
 app.get('/', async (req, res) => {
-  const users = await User.find()
-  res.json(users)
 })
 
 

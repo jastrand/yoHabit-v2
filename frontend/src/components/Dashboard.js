@@ -79,8 +79,6 @@ export const Dashboard = () => {
   )
 }
 
-
-
 const Container = styled.div`
   height: 7px;
   width: 300px;
