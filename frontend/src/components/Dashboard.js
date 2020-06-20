@@ -17,6 +17,7 @@ import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment';
 import { MonthlyStats } from '../components/MonthlyStats'
 import { EmptyList } from '../components/EmptyList'
+import { HabitStreak } from '../components/HabitStreak'
 
 export const Dashboard = () => {
   const dispatch = useDispatch()
@@ -47,14 +48,14 @@ export const Dashboard = () => {
                   <Container color="#5dade2" >
                     <TextWrapper>
                       <ItemText color="black" fontSize="20px">{habit.title}</ItemText>
-                      <ItemText color="white">{`${habit.category === 'weekly' ? "This week: " : "This month: "}`}
-                        {habit.timeStamp.length} times</ItemText>
+                      <HabitStreak timeStamp={habit.timeStamp} category={habit.category} />
                     </TextWrapper>
                     <IconWrapper onClick={() => setOpen(opened ? false : i)}>
                       <FontAwesomeIcon color="white" icon={faAngleDoubleDown} />
                     </IconWrapper>
                     <Background>
-                      <Progressbar percent={habit.timeStamp.length * 14}>
+                      <Progressbar percent={habit.category === 'weekly' ? habit.timeStamp.length * 14 : habit.timeStamp.length * 3.33}>
+
                       </Progressbar>
                     </Background>
                   </Container>

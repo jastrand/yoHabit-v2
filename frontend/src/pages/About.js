@@ -35,7 +35,6 @@ const ImageSection = styled.section`
 `
 const Image = styled.img`
   width: 30%;
-  height: 30%;
 `
 const Span = styled.span`
   background-color: #48c9b0;
