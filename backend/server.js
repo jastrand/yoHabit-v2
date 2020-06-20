@@ -32,10 +32,10 @@ const User = mongoose.model('User', {
     type: String,
     default: ''
   },
-  personalHabits: [{
-    type: String,
+  personalHabits: {
+    type: [],
     default: ''
-  }],
+  },
 })
 
 

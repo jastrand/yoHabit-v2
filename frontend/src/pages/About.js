@@ -14,9 +14,9 @@ export const About = () => {
       </ImageSection>
       <TextSection>
         <Text>Track your habits and get motivated by streaks with these simple steps:</Text>
-        <Text>1. Create account</Text>
-        <Text>2. Pick your habits</Text>
-        <Text>3. Mark as done and get motivated by streaks!</Text>
+        <Text><Span>1</Span> Create account</Text>
+        <Text><Span>2</Span> Pick your habits</Text>
+        <Text><Span>3</Span> Track habits get motivated by streaks!</Text>
       </TextSection>
     </Container>
   )
@@ -36,9 +36,18 @@ const ImageSection = styled.section`
 const Image = styled.img`
   width: 30%;
 `
+const Span = styled.span`
+  background-color: #48c9b0;
+  padding: 12px;
+  color: white;
+  border-radius: 50%;
+  margin: 2px 10px 10px 2px;
+`
+
 const Text = styled.h2`
-  font-size: 25px;
+  font-size: 20px;
   align-self: flex-start;
+  margin: 20px 0;
 `
 const TextSection = styled.div`
   display: flex;  

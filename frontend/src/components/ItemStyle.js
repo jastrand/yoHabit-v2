@@ -94,9 +94,7 @@ export const IconWrapper = styled.button`
     cursor: pointer;
   }
 `
-export const Tooltip = styled.div`
-  display: none;
-`
+
 
 export const AddButton = styled.button`
   border: none;
@@ -109,6 +107,19 @@ export const AddButton = styled.button`
   &:hover {
     transform: scale(1.3);
     cursor: pointer;
+  }
+`
+
+export const Tooltip = styled.p`
+  display: none;
+  min-width: 200px;
+  margin-left: 20px;
+  
+
+  ${ItemBox}:hover & {
+    display: block;
+    width: fit-content;
+    color: grey;
   }
 `
 

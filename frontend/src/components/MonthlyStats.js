@@ -27,10 +27,11 @@ export const MonthlyStats = ({ timeStamp }) => {
   })
   console.log(getTimes)
 
+  const tileClassName = dates.map((day) => day == getTimes ? "green" : "red")
 
-
-  // if name of day and timestamp matches, habit is completed
-
+  // const howManyTimes =
+  //   getTimes.length === 0 ? "Time to get started!!" ||
+  //     getTimes.length === 7 ? "Week completed"
 
   return (
     <Section>
@@ -39,7 +40,7 @@ export const MonthlyStats = ({ timeStamp }) => {
         <DateWrapper>
           {dates.reverse().map((day, index) => (
             <Dates key={index}>{day}
-              <Span className={day === getTimes ? "green-circle" : "red-circle"}>
+              <Span>
                 {day == getTimes ?
                   <FontAwesomeIcon color="green" icon={faCheckSquare} />
                   :
@@ -48,15 +49,17 @@ export const MonthlyStats = ({ timeStamp }) => {
             </Dates>
           ))}
         </DateWrapper>
+        <StreakCount>Way to go! {getTimes.length}/7 days completed!</StreakCount>
       </Container>
       <Container>
         <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>
         <Calendar
+          tileClassName={tileClassName}
           minDate={startDate}
           maxDate={endDate}
         />
       </Container>
-    </Section>
+    </Section >
   )
 }
 
@@ -83,6 +86,13 @@ const Span = styled.span`
 const TitleSpan = styled.span`
   align-self: center;
 `
+const StreakCount = styled.p`
+  font-size: 18px;
+  align-self: center;
+  color: white;
+  margin-top: 0;
+`
+
 const Dates = styled.p`
   color: whitesmoke;
   font-size: 20px;

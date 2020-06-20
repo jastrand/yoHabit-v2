@@ -5,8 +5,6 @@ import {
   ItemBox,
   ItemText,
   IconWrapper,
-  Text,
-  TextLink,
   AddButton,
   DashboardView,
   TextWrapper,
@@ -16,8 +14,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons'
-import { MonthlyStats } from '../components/MonthlyStats'
 import moment from 'moment';
+import { MonthlyStats } from '../components/MonthlyStats'
+import { EmptyList } from '../components/EmptyList'
 
 export const Dashboard = () => {
   const dispatch = useDispatch()
@@ -64,7 +63,7 @@ export const Dashboard = () => {
                       onClick={() => handleOnClick(habit)}
                       disabled={disabled ? "disabled" : ""}>
                       <FontAwesomeIcon color={disabled ? "e4e9ed" : "#48c9b0"} icon={faCheckCircle} /></AddButton>
-                    {disabled && <Tooltip>Already done today</Tooltip>}
+                    {disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">💪 Already done today</span></Tooltip>}
                   </ItemBox>
                 </DashboardView>
                 {opened && <MonthlyStats timeStamp={habit.timeStamp} />}
@@ -73,7 +72,7 @@ export const Dashboard = () => {
           })}
         </div>
       ) : (
-          <Text>Go to "<TextLink to="/settings">Your Settings</TextLink>" to pick your habits!</Text>
+          <EmptyList />
         )
       }
     </div>
@@ -101,16 +100,16 @@ const Section = styled.div`
   left: 0;
   top: 0;
   border-radius: 3px;
-  transition: width 10s ease-in-out;
+  transition: width 2s ease-in-out;
 `;
 
 const Background = styled(Section)`
-  background: #b0b0b0;
+  background-color: #e2dede;
   width: 100%;
 `;
 
 const Progressbar = styled(Section)`
-  background: #5dade2;
+  background: #86c1e9;
   width: ${({ percent }) => percent}%;
 `
 

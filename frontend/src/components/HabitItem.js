@@ -16,7 +16,8 @@ export const HabitItem = ({ habit }) => {
   const handleOnClick = () => {
     if (!added) {
       //dispatch(personalHabits.actions.addItem({ ...habit, category }))
-      dispatch(fetchDashboard({ habit: habit, id, category }))
+      dispatch(fetchDashboard({ habit, category, id }))
+      console.log(fetchDashboard)
     } else {
       dispatch(personalHabits.actions.removeItem({
         habit: habit

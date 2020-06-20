@@ -42,24 +42,22 @@ export const userProfile = createSlice({
 })
 
 export const fetchDashboard = ({ id, habit, accessToken, category }) => {
-  console.log(id)
-  console.log(personalHabits)
-  const URL = `http://localhost:8080/users/${id}`
-  console.log(URL)
-  return (dispatch) => {
+  const URL = `http://localhost:8080/users/${id}`;
+  return (dispatch, getState) => {
     fetch(URL, {
-      method: 'POST',
-      body: JSON.stringify({ personalHabits }),
-      headers: { 'Content-Type': 'application/json', 'Authorization': accessToken }
+      method: "POST",
+      body: JSON.stringify([...getState().personalHabits.list.items, habit]),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      },
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
-        dispatch(personalHabits.actions.addItem({ ...habit, category }))
-        dispatch(userProfile.actions.setProfile({ id }))
-
-        console.log(habit)
-      })
-  }
-
-}
+        dispatch(personalHabits.actions.addItem({ ...habit, category }));
+        dispatch(userProfile.actions.setProfile({ id }));
+        console.log(personalHabits)
+      });
+  };
+};
 

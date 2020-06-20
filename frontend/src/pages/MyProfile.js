@@ -44,8 +44,10 @@ export const MyProfile = () => {
         {showForm && <ImageForm function={setShowForm} />}
         <TextWrapper>
           <WelcomeText>{message}</WelcomeText>
-          <Text>Habits:</Text>
-          <Text>{numberOfHabits}</Text>
+          {token &&
+            <div>
+              <Text>Habits:</Text>
+              <Text>{numberOfHabits}</Text></div>}
         </TextWrapper>
       </Wrapper>
       {token &&
@@ -75,7 +77,7 @@ const Wrapper = styled.div`
   padding: 20px;
   justify-content: flex-start;
   margin-bottom: 50px;
-  background-color: #ECF0F1;
+  background-color: #e1dede;
   border-radius: 10px;
 `
 
