@@ -27,7 +27,7 @@ export const MonthlyStats = ({ timeStamp }) => {
   })
   console.log(getTimes)
 
-  const tileClassName = dates.map((day) => day == getTimes ? "green" : "red")
+  //const tileClassName = dates.map((day) => day == getTimes ? "green" : "red")
 
   // const howManyTimes =
   //   getTimes.length === 0 ? "Time to get started!!" ||
@@ -41,7 +41,7 @@ export const MonthlyStats = ({ timeStamp }) => {
           {dates.reverse().map((day, index) => (
             <Dates key={index}>{day}
               <Span>
-                {day == getTimes ?
+                {day === getTimes ?
                   <FontAwesomeIcon color="green" icon={faCheckSquare} />
                   :
                   <FontAwesomeIcon color="red" icon={faTimesCircle} />}
@@ -54,7 +54,7 @@ export const MonthlyStats = ({ timeStamp }) => {
       <Container>
         <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>
         <Calendar
-          tileClassName={tileClassName}
+          //tileClassName={tileClassName}
           minDate={startDate}
           maxDate={endDate}
         />

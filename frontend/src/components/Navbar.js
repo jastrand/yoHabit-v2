@@ -1,15 +1,25 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { userProfile } from '../reducers/userinfo'
 
 const SignedIn = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const LogOut = () => {
+    dispatch(userProfile.actions.logOut())
+    history.push('/')
+  }
   return (
     <LinkWrapper>
       <StyledLink to="/settings">Your settings</StyledLink>
       <StyledLink to="/profile">Dashboard</StyledLink>
       <StyledLink to="/about">About</StyledLink>
       <StyledLink to="/contact">Contact</StyledLink>
+      <StyledLink to="/" onClick={() => LogOut()}>Log out</StyledLink>
     </LinkWrapper>
   )
 }

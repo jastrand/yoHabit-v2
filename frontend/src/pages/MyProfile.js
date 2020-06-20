@@ -38,7 +38,7 @@ export const MyProfile = () => {
       <Wrapper>
         <ImgWrapper>
           <ImgText onClick={() => setShowForm(!showForm)}><span role="img" aria-label="Camera">📷</span></ImgText>
-          {!image && <FontAwesomeIcon color="#48c9b0" size="5x" icon={faUserCircle} />}
+          {!image && <FontAwesomeIcon color="#fff" size="5x" icon={faUserCircle} />}
           {image && <Image src={image} alt="profile picture"></Image>}
         </ImgWrapper>
         {showForm && <ImageForm function={setShowForm} />}
@@ -61,14 +61,14 @@ export const MyProfile = () => {
 
 const WelcomeText = styled.p`
   font-size: 30px;
-  color: #48c9b0;
+  color: #fff;
   margin: 0 0 0 20px;
   align-self: flex-start;
 `
 const Text = styled.p`
   font-size: 15px;
   font-weight: bold;
-  color: #48c9b0;
+  color: #fff;
   margin: 0 0 0 20px;
 `
 const Wrapper = styled.div`
@@ -77,7 +77,7 @@ const Wrapper = styled.div`
   padding: 20px;
   justify-content: flex-start;
   margin-bottom: 50px;
-  background-color: #e1dede;
+  background-color: #48c9b0;
   border-radius: 10px;
 `
 

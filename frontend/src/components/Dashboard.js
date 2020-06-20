@@ -54,7 +54,7 @@ export const Dashboard = () => {
                       <FontAwesomeIcon color="white" icon={faAngleDoubleDown} />
                     </IconWrapper>
                     <Background>
-                      <Progressbar percent={habit.timeStamp.length * 10}>
+                      <Progressbar percent={habit.timeStamp.length * 14}>
                       </Progressbar>
                     </Background>
                   </Container>
@@ -111,6 +111,7 @@ const Background = styled(Section)`
 const Progressbar = styled(Section)`
   background: #86c1e9;
   width: ${({ percent }) => percent}%;
+  max-width: 100%;
 `
 
 const TitleSpan = styled.span`

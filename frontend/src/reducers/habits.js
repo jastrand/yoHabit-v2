@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useSelector } from 'react-redux'
-import { personalHabits } from './personalHabits'
-import { userProfile } from './userinfo'
 // This reducer is the generic daily habits
 // User will have possibility to add its own (stretch goal)
 const initialState = {
