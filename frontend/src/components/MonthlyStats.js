@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
-export const MonthlyStats = ({ timeStamp }) => {
+export const MonthlyStats = ({ timeStamp, category }) => {
 
   // calender view is limited with following start/end:
   const startDate = new Date(2020, 0, 1)
@@ -28,24 +28,8 @@ export const MonthlyStats = ({ timeStamp }) => {
   })
   console.log(getTimes)
 
-
-
-  // checks if timeStamp matches the name of the day
-  // const habitDone = () => {
-  //   dates.map((day) => {
-  //     if (day === getTimes) {
-  //       return 
-  //     } else {
-  //       <FontAwesomeIcon color="red" icon={faTimesCircle} />
-  //     }
-  //   })
-  // }
-
+  // gives the calendar the correct className
   const tileClassName = getTimes.length === 2 ? "green" : "red"
-
-  // const howManyTimes =
-  //   getTimes.length === 0 ? "Time to get started!!" ||
-  //     getTimes.length === 7 ? "Week completed"
 
   return (
     <Section>
@@ -56,14 +40,16 @@ export const MonthlyStats = ({ timeStamp }) => {
             <Dates key={index}>{day}
               <Span>
                 {getTimes.some((time) => time === day) ?
-                  <FontAwesomeIcon color="green" icon={faCheckSquare} />
+                  <FontAwesomeIcon color="#58D68D" icon={faCheckSquare} />
                   :
-                  <FontAwesomeIcon color="red" icon={faTimesCircle} />}
+                  <FontAwesomeIcon color="tomato" icon={faTimesCircle} />}
               </Span>
             </Dates>
           ))}
         </DateWrapper>
-        <StreakCount>{getTimes.length}/7 days completed</StreakCount>
+        <StreakCount>
+          {category === 'weekly' ? timeStamp.length + "/7 days completed" : timeStamp.length + "/30 days completed"}
+        </StreakCount>
       </Container>
       <Container>
         <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>
@@ -90,9 +76,12 @@ export const Container = styled.div`
 `
 const Section = styled.section`
     display: flex;
+    justify-content: center;
 `
 const DateWrapper = styled.section`
-  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 const Span = styled.span`
   margin-left: 10px;
@@ -100,7 +89,7 @@ const Span = styled.span`
 const TitleSpan = styled.span`
   align-self: center;
 `
-const StreakCount = styled.p`
+export const StreakCount = styled.p`
   font-size: 18px;
   align-self: center;
   color: white;
@@ -109,7 +98,13 @@ const StreakCount = styled.p`
 
 const Dates = styled.p`
   color: whitesmoke;
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Raleway', sans-serif;
   text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: #d2e9e4;
+  color: black;
+  margin: 8px;
 `

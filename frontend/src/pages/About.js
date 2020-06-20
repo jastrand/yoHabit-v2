@@ -13,7 +13,8 @@ export const About = () => {
         <Image src={image3} alt="A plate of healthy food" />
       </ImageSection>
       <TextSection>
-        <Text>Track your habits and get motivated by streaks with these simple steps:</Text>
+        <Text>Track habits and get motivated by streaks, make sure not to lose your streak! </Text>
+        <Text>Ok cool, so how does it work?</Text>
         <Text><Span>1</Span> Create account</Text>
         <Text><Span>2</Span> Pick your habits</Text>
         <Text><Span>3</Span> Track habits and get motivated by streaks!</Text>

@@ -55,7 +55,6 @@ export const Dashboard = () => {
                     </IconWrapper>
                     <Background>
                       <Progressbar percent={habit.category === 'weekly' ? habit.timeStamp.length * 14 : habit.timeStamp.length * 3.33}>
-
                       </Progressbar>
                     </Background>
                   </Container>
@@ -64,10 +63,11 @@ export const Dashboard = () => {
                       onClick={() => handleOnClick(habit)}
                       disabled={disabled ? "disabled" : ""}>
                       <FontAwesomeIcon color={disabled ? "e4e9ed" : "#48c9b0"} icon={faCheckCircle} /></AddButton>
+                    {!disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">Click to add as done</span></Tooltip>}
                     {disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">💪 Already done today</span></Tooltip>}
                   </ItemBox>
                 </DashboardView>
-                {opened && <MonthlyStats timeStamp={habit.timeStamp} />}
+                {opened && <MonthlyStats category={habit.category} timeStamp={habit.timeStamp} />}
               </div>
             )
           })}
@@ -76,7 +76,7 @@ export const Dashboard = () => {
           <EmptyList />
         )
       }
-    </div>
+    </div >
   )
 }
 
