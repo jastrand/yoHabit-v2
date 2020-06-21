@@ -15,6 +15,9 @@ import { personalHabits } from 'reducers/personalHabits'
 import { Navbar } from './components/Navbar'
 import thunk from 'redux-thunk'
 import { applyMiddleware, compose } from '@reduxjs/toolkit'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 
 const saveToLocalStorage = (state) => {

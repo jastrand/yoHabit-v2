@@ -116,10 +116,6 @@ const Image = styled.img`
   height: 100px;
   border-radius: 50%;
 
-  ${ImgWrapper}:hover & {
-    filter: brightness(20%);
-  }
-
 `
 const Container = styled.div`
   height: 100%;
@@ -133,19 +129,5 @@ const Container = styled.div`
 `
 
 const ImgText = styled.button`
-  position: absolute;
-  display: none;
-  top: 10%;
-  left: 20%;
-  z-index: 5;
-  color: white;
-  background: none;
-  border: none;
-  font-size: 40px;
-  cursor: pointer;
-  font-weight: bold;
-
-  ${ImgWrapper}:hover & {
-    display: block;
-  }
+ 
 `

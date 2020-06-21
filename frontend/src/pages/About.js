@@ -36,20 +36,24 @@ const ImageSection = styled.section`
 `
 const Image = styled.img`
   width: 30%;
+  max-height: 300px;
 `
 const Span = styled.span`
   background-color: #48c9b0;
-  padding: 12px;
+  padding: 20px;
   color: white;
   border-radius: 50%;
-  margin: 2px 10px 10px 2px;
+  margin-right: 30px;
 `
 
 const Text = styled.h2`
   font-size: 20px;
   align-self: flex-start;
-  margin: 20px 0;
-  text-align: center;
+  margin: 4px;
+  font-weight: lighter;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 const TextSection = styled.div`
   display: flex;  

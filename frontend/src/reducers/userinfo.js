@@ -6,7 +6,7 @@ const initialState = {
     id: false,
     accessToken: false,
     loggedIn: false,
-    profileImage: false,
+    imageUrl: false,
     personalHabits: []
   }
 }
@@ -18,11 +18,11 @@ export const userProfile = createSlice({
 
     //reducer to set id and token with that recieved from backend
     loggedIn: (state, action) => {
-      const { id, accessToken, loggedIn, profileImage, personalHabits } = action.payload
+      const { id, accessToken, loggedIn, imageUrl, personalHabits } = action.payload
       state.user.id = id;
       state.user.accessToken = accessToken;
       state.user.loggedIn = loggedIn;
-      state.user.profileImage = profileImage;
+      state.user.imageUrl = imageUrl;
       state.user.personalHabits = personalHabits;
     },
     //reduer to set id and token to false when user logs out
@@ -32,9 +32,9 @@ export const userProfile = createSlice({
       state.user.loggedIn = false
     },
     setProfile: (state, action) => {
-      const { id, profileImage, personalHabits } = action.payload
-      state.user.profileImage = profileImage
+      const { id, imageUrl, personalHabits } = action.payload
       state.user.id = id
+      state.user.imageUrl = imageUrl
       state.user.personalHabits = personalHabits
     },
 

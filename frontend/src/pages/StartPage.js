@@ -31,6 +31,10 @@ const Startpage = styled.section`
   align-items: center;
   height: 700px;
   padding-top: 200px;
+
+  @media (max-width: 400px) {
+    padding-top: 50px;
+  }  
 `
 
 const Title = styled.h1`

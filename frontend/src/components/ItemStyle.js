@@ -11,6 +11,10 @@ export const ItemBox = styled.div`
   margin: 5px;
   padding: 12px 8px 8px 12px;
   height: 60px;
+
+  @media (max-width: 400px) {
+    max-width: 250px;
+  }  
 `
 
 export const Category = styled.select`
@@ -46,6 +50,14 @@ export const DashboardView = styled.div`
   flex-direction: row;
   justify-content: center;
   flex-wrap: nowrap;
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+    margin: 10px 10px;
+    align-items: center;
+    background-color: whitesmoke;
+    justify-content: space-around;
+  }  
 `
 
 export const Text = styled.p`

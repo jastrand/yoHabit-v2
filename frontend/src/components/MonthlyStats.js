@@ -73,10 +73,20 @@ export const Container = styled.div`
     border-radius: 8px;
     padding: 8px 8px 8px 20px;
     margin-right: 10px;
+
+    @media (max-width: 400px) {
+      margin: 10px;
+    }  
 `
 const Section = styled.section`
     display: flex;
     justify-content: center;
+
+    @media (max-width: 400px) {
+      flex-direction: column;
+      align-items: center;
+    }  
+  
 `
 const DateWrapper = styled.section`
   display: flex;
