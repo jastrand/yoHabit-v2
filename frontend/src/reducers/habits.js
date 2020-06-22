@@ -28,6 +28,4 @@ export const habits = createSlice({
   }
 })
 
-// put the thunk here with accesstoken and habit
-
 

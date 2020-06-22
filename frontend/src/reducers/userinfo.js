@@ -55,7 +55,7 @@ export const fetchDashboard = ({ id, habit, accessToken, category }) => {
       .then((res) => res.json())
       .then((data) => {
         dispatch(personalHabits.actions.addItem({ ...habit, category }));
-        dispatch(userProfile.actions.setProfile({ id }));
+        dispatch(userProfile.actions.setProfile({ id, personalHabits }));
         console.log(personalHabits)
       });
   };

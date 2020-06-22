@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { personalHabits } from '../reducers/personalHabits'
+import { userProfile } from '../reducers/userinfo'
 import {
   ItemBox,
   ItemText,
@@ -21,7 +22,8 @@ import { HabitStreak } from '../components/HabitStreak'
 
 export const Dashboard = () => {
   const dispatch = useDispatch()
-  const habits = useSelector((store) => store.personalHabits.list.items)
+  const habits = useSelector((state) => state.userProfile.user.personalHabits)
+  console.log(habits.length)
   const [open, setOpen] = useState(false)
   const noItems = habits.length <= 0
   const startTime = moment().startOf('day').unix();
@@ -76,7 +78,7 @@ export const Dashboard = () => {
           <EmptyList />
         )
       }
-    </div >
+    </div>
   )
 }
 

@@ -12,10 +12,13 @@ export const MyProfile = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [message, setMessage] = useState()
+  //const [habits, setHabits] = useState()
   const [showForm, setShowForm] = useState(false)
   const token = useSelector((state) => state.userProfile.user.accessToken)
   const image = useSelector((state) => state.userProfile.user.profileImage)
-  const habits = useSelector((store) => store.personalHabits.list.items)
+  const habits = useSelector((state) => state.userProfile.user.personalHabits)
+
+  console.log(habits)
 
   useEffect(() => {
     fetch('http://localhost:8080/profile', {
@@ -23,7 +26,8 @@ export const MyProfile = () => {
       headers: { 'Authorization': token, 'Content-Type': 'application/json' }
     })
       .then((res) => res.json())
-      .then((data) => setMessage(data.message))
+      .then((data) =>
+        setMessage(data.message))
   }, [token])
 
   const LogOut = () => {

@@ -97,8 +97,9 @@ app.post('/sessions', async (req, res) => {
 app.get('/profile', authenticateUser)
 app.get('/profile', async (req, res) => {
   const user = await User.findOne({ accessToken: req.header('Authorization') })
-  res.json({ message: `Welcome ${user.name}` })
+  res.json({ message: `Welcome ${user.name}`, habits: user.personalHabits })
 })
+
 
 //find user and update profile 
 app.post('/users/:id', async (req, res) => {
