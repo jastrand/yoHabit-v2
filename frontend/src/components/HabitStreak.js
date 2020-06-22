@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ItemText } from '../components/ItemStyle'
 import moment from 'moment'
 
@@ -14,19 +14,17 @@ export const HabitStreak = ({ timeStamp, category }) => {
 
   const filterStreak = (category) => {
     if (category === 'weekly') {
-      const filterWeekly = habitDone.filter(habit => habit > weekStart && habit < weekEnd)
-      console.log(filterWeekly + "7 days")
+      return habitDone.filter(habit => habit > weekStart && habit < weekEnd)
     } else {
-      const filterMonthly = habitDone.filter(habit => habit > monthStart && habit < monthEnd)
-      console.log(filterMonthly + "30 days")
+      return habitDone.filter(habit => habit > monthStart && habit < monthEnd)
     }
   }
 
-  filterStreak()
+  const filteredHabits = filterStreak()
 
   return (
     <ItemText habitDone={habitDone} color="white">
-      {category === 'weekly' ? "This week: " : "This month: "} {habitDone.length} times
+      {category === 'weekly' ? "This week: " : "This month: "} {filteredHabits.length} times
     </ItemText>
   )
 }
