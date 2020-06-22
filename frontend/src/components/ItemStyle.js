@@ -86,6 +86,7 @@ export const ItemButton = styled.button`
   text-align: center;
   line-height: 30px;
   text-transform: uppercase;
+  font-size: 30px;
 
   &:hover {
     transform: scale(1.1);

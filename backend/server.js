@@ -32,12 +32,12 @@ const User = mongoose.model('User', {
     type: String,
     default: ''
   },
-  personalHabits: {
-    type: [],
-    default: ''
-  },
+  personalHabits: [{
+    id: Number,
+    habit: String,
+    category: String
+  }]
 })
-
 
 
 const authenticateUser = async (req, res, next) => {
@@ -73,7 +73,7 @@ app.post('/users', async (req, res) => {
     const name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1).toLowerCase()
     const { email, password } = req.body
     const user = await new User({ name, email, password: bcrypt.hashSync(password) }).save()
-    res.status(201).json({ id: user._id, accessToken: user.accessToken, profileImage: user.profileImage })
+    res.status(201).json({ id: user._id, accessToken: user.accessToken, profileImage: user.profileImage, personalHabits: user.personalHabits })
   } catch (err) {
     res.status(400).json({ message: "Could not create user", error: err })
   }
@@ -103,8 +103,19 @@ app.get('/profile', async (req, res) => {
 //find user and update profile 
 app.post('/users/:id', async (req, res) => {
   const user = await User.findOneAndUpdate({ _id: req.params.id },
-    { profileImage: req.body.image, personalHabits: req.body.personalHabits }, { new: true })
-  res.json({ imageURL: user.profileImage, personalHabits: user.personalHabits })
+    { profileImage: req.body.image }, { new: true })
+  res.json({ imageURL: user.profileImage })
+})
+
+app.put('/users/:id', async (req, res) => {
+  const { habit, category } = req.body
+  const title = habit.title
+  const habitId = habit.id
+  const user = await User.findOneAndUpdate({ _id: req.params.id },
+    { $push: { personalHabits: { id: habitId, habit: title, category } } },
+    { new: true }
+  )
+  res.json(user)
 })
 
 // Start the server

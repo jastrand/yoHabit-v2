@@ -15,8 +15,8 @@ export const HabitItem = ({ habit }) => {
 
   const handleOnClick = () => {
     if (!added) {
-      dispatch(personalHabits.actions.addItem({ ...habit, category }))
-      //dispatch(fetchDashboard({ habit, category, id }))
+      //dispatch(personalHabits.actions.addItem({ ...habit, category }))
+      dispatch(fetchDashboard({ id, habit, category }))
       console.log(fetchDashboard)
     } else {
       dispatch(personalHabits.actions.removeItem({
@@ -39,7 +39,7 @@ export const HabitItem = ({ habit }) => {
         </Category>
       </ItemWrapper>
       <ItemButton color={!added ? "#2980B9" : "red"} type="button" onClick={handleOnClick}>
-        {!added ? "Add" : "X"}
+        {!added ? "+" : "X"}
       </ItemButton>
     </ItemBox>
   );

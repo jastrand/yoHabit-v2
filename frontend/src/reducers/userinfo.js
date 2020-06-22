@@ -43,10 +43,10 @@ export const userProfile = createSlice({
 
 export const fetchDashboard = ({ id, habit, accessToken, category }) => {
   const URL = `http://localhost:8080/users/${id}`;
-  return (dispatch, getState) => {
+  return (dispatch) => {
     fetch(URL, {
-      method: "POST",
-      body: JSON.stringify([...getState().personalHabits.list.items, habit]),
+      method: "PUT",
+      body: JSON.stringify({ habit, category }),
       headers: {
         "Content-Type": "application/json",
         Authorization: accessToken,
