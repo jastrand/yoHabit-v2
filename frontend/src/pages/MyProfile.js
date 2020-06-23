@@ -16,7 +16,8 @@ export const MyProfile = () => {
   const [showForm, setShowForm] = useState(false)
   const token = useSelector((state) => state.userProfile.user.accessToken)
   const image = useSelector((state) => state.userProfile.user.profileImage)
-  const habits = useSelector((state) => state.userProfile.user.personalHabits)
+  //const habits = useSelector((state) => state.userProfile.user.personalHabits)
+  const habits = useSelector((state) => state.personalHabits.list.items)
 
   console.log(habits)
 
@@ -51,7 +52,8 @@ export const MyProfile = () => {
           {token &&
             <div>
               <Text>Habits:</Text>
-              <Text>{numberOfHabits}</Text></div>}
+              <Text>{numberOfHabits}</Text>
+            </div>}
         </TextWrapper>
       </Wrapper>
       {token &&

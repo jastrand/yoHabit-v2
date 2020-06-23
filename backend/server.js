@@ -4,6 +4,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt-nodejs'
+import moment from 'moment'
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/yohabit"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
@@ -33,9 +34,10 @@ const User = mongoose.model('User', {
     default: ''
   },
   personalHabits: [{
-    id: Number,
     habit: String,
-    category: String
+    category: String,
+    id: String,
+    timeStamp: [],
   }]
 })
 
@@ -108,16 +110,66 @@ app.post('/users/:id', async (req, res) => {
   res.json({ imageURL: user.profileImage })
 })
 
-app.put('/users/:id', async (req, res) => {
-  const { habit, category } = req.body
-  const title = habit.title
-  const habitId = habit.id
-  const user = await User.findOneAndUpdate({ _id: req.params.id },
-    { $push: { personalHabits: { id: habitId, habit: title, category } } },
-    { new: true }
-  )
-  res.json(user)
+// post a new habit
+app.post('/users/:id/habits', async (req, res) => {
+
+  try {
+    const { habit, category } = req.body
+    const title = habit.title
+    const habitId = habit.id
+    const existingItem = await User.findOne({ _id: req.params.id, personalHabits: title })
+
+    if (existingItem) {
+      return
+    } else {
+
+      const user = await User.findOneAndUpdate({ _id: req.params.id },
+        { $push: { personalHabits: { id: habitId, habit: title, category } } },
+        { new: true }
+      )
+      res.json(user)
+    }
+  }
+  catch (err) {
+    res.status(400).json({ message: "Could not create habit", error: err })
+  }
 })
+
+//put endpoint for doneTone
+app.put('/users/:id/habits', async (req, res) => {
+  const timeStamp = moment().unix();
+  const existingItem = await User.findOne({ _id: req.params.id, personalHabits: title })
+  const startTime = moment().startOf('day').unix();
+  const lastEntry = existingItem.timeStamp[existingItem.timeStamp.length - 1]
+
+  if (existingItem.timeStamp.length === 0) {
+    const user = await User.findOneAndUpdate({ _id: req.params.id },
+      { $push: { timeStamp: { timeStamp } } },
+      { new: true })
+    res.json(user)
+
+  } else if (lastEntry < startTime) {
+    const user = await User.findOneAndUpdate({ _id: req.params.id },
+      { $push: { timeStamp: { timeStamp } } },
+      { new: true })
+    res.json(user)
+  }
+})
+
+
+// //delete habit
+// app.delete('/users/:id', async (req, res) => {
+//   try {
+//     const { habitId, _id } = req.params
+//     const deletedHabit = await User.findOneAndDelete(
+//       { '_id': habitId, 'userId': _id, }
+//     )
+//     res.status(201).json(deletedHabit)
+//   } catch (err) {
+//     res.status(400).json({ errors: err.errors })
+//   }
+// })
+
 
 // Start the server
 app.listen(port, () => {

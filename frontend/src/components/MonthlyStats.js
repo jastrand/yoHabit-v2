@@ -1,120 +1,48 @@
 import React from 'react'
-import styled from 'styled-components'
-import { ItemText } from '../components/ItemStyle'
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
 import moment from 'moment'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components'
 
-export const MonthlyStats = ({ timeStamp, category }) => {
+export const MonthlyStats = ({ timeStamp, props }) => {
 
-  // calender view is limited with following start/end:
-  const startDate = new Date(2020, 0, 1)
-  const endDate = new Date()
-
-  // array of the last 7 days by name of the day
-  const dates = [...Array(7)].map((_, i) => {
+  // array of the last 30 days by name of month and day
+  const dates = [...Array(30)].map((_, i) => {
     const day = new Date()
     day.setDate(day.getDate() - i)
-    return moment(day).format("dddd")
+    return moment(day).format("MMM D")
   })
-  console.log(dates)
 
-  // array of which timeStamps each user have and return from unix to name of the day
-  const getTimes = timeStamp.map((time) => {
-    return moment.unix(time).format("dddd")
+  const habitDone = timeStamp.map((time) => {
+    return moment.unix(time).format("MMM D")
   })
-  console.log(getTimes)
-
-  // gives the calendar the correct className
-  const tileClassName = getTimes.length === 2 ? "green" : "red"
+  console.log(habitDone)
 
   return (
-    <Section>
-      <Container>
-        <TitleSpan><ItemText style={{ color: "white", fontSize: "25px" }}>Last 7 days:</ItemText></TitleSpan>
-        <DateWrapper>
-          {dates.reverse().map((day, index) => (
-            <Dates key={index}>{day}
-              <Span>
-                {getTimes.some((time) => time === day) ?
-                  <FontAwesomeIcon color="#58D68D" icon={faCheckSquare} />
-                  :
-                  <FontAwesomeIcon color="tomato" icon={faTimesCircle} />}
-              </Span>
-            </Dates>
-          ))}
-        </DateWrapper>
-        <StreakCount>
-          {category === 'weekly' ? timeStamp.length + "/7 days completed" : timeStamp.length + "/30 days completed"}
-        </StreakCount>
-      </Container>
-      <Container>
-        <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>
-        <Calendar
-          tileClassName={tileClassName}
-          minDate={startDate}
-          maxDate={endDate}
-        />
-      </Container>
-    </Section >
+    <DateWrapper>
+      {dates.reverse().map((date, i) => (
+        <Month color={habitDone.some((time) => time === date) ? '#57d68c' : '#ff6347'}
+          key={i}>{date}
+        </Month>
+      ))}
+    </DateWrapper>
   )
 }
 
-export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #48c9b0;
-    width: 300px;
-    height: 400px;
-    border-radius: 8px;
-    padding: 8px 8px 8px 20px;
-    margin-right: 10px;
-
-    @media (max-width: 400px) {
-      margin: 10px;
-    }  
-`
-const Section = styled.section`
-    display: flex;
-    justify-content: center;
-
-    @media (max-width: 400px) {
-      flex-direction: column;
-      align-items: center;
-    }  
-  
-`
-const DateWrapper = styled.section`
+const DateWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-`
-const Span = styled.span`
-  margin-left: 10px;
-`
-const TitleSpan = styled.span`
-  align-self: center;
-`
-export const StreakCount = styled.p`
-  font-size: 18px;
-  align-self: center;
-  color: white;
-  margin-top: 0;
+  align-items: center;
+  padding-top: 5px;
 `
 
-const Dates = styled.p`
-  color: whitesmoke;
-  font-size: 18px;
-  font-family: 'Raleway', sans-serif;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-  background-color: #d2e9e4;
-  color: black;
-  margin: 8px;
+const Month = styled.p`
+  background-color: ${props => props.color};
+  margin: 7px;
+  width: 35px;
+  text-align: center;
+  padding: 3px;
+  color: white;
+  border-radius: 10px;
+  font-family: 'Raleway',sans-serif;
+  border: 1px solid white;
 `

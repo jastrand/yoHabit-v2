@@ -111,7 +111,7 @@ const Navigation = styled.nav`
 `
 
 const Logo = styled.h1`
-  font-size: 30px;
+  font-size: 32px;
   margin-left: 13px;
   margin: 0; 
   padding: 0;

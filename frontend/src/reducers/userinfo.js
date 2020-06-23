@@ -32,20 +32,24 @@ export const userProfile = createSlice({
       state.user.loggedIn = false
     },
     setProfile: (state, action) => {
-      const { id, imageUrl, personalHabits } = action.payload
+      const { id, imageUrl } = action.payload
       state.user.id = id
       state.user.imageUrl = imageUrl
+    },
+    setHabits: (state, action) => {
+      const { id, personalHabits } = action.payload
+      state.user.id = id
       state.user.personalHabits = personalHabits
     },
-
   }
 })
 
+// Sends the habit from settings page to backend
 export const fetchDashboard = ({ id, habit, accessToken, category }) => {
   const URL = `http://localhost:8080/users/${id}`;
   return (dispatch) => {
     fetch(URL, {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify({ habit, category }),
       headers: {
         "Content-Type": "application/json",
@@ -55,9 +59,31 @@ export const fetchDashboard = ({ id, habit, accessToken, category }) => {
       .then((res) => res.json())
       .then((data) => {
         dispatch(personalHabits.actions.addItem({ ...habit, category }));
-        dispatch(userProfile.actions.setProfile({ id, personalHabits }));
+        dispatch(userProfile.actions.setHabits({ personalHabits: data.personalHabits }));
         console.log(personalHabits)
       });
   };
 };
 
+
+//delete habit from backend
+export const deleteHabit = (id) => {
+  const URL = `http://localhost:8080/users/${id}`
+  return (dispatch, getState) => {
+    const accessToken = getState().user.accessToken
+    fetch(URL, {
+      method: 'DELETE',
+      headers: { Authorization: accessToken }
+    })
+      .then(console.log('deleting habit'))
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } throw new Error('Could not delete the habit. Try again.')
+      })
+      .then((json) => {
+        console.log(json)
+        dispatch(fetchDashboard())
+      })
+  }
+}

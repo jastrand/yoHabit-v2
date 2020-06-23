@@ -16,18 +16,17 @@ import styled from 'styled-components'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment';
-import { MonthlyStats } from '../components/MonthlyStats'
+import { Stats } from './Stats'
 import { EmptyList } from '../components/EmptyList'
 import { HabitStreak } from '../components/HabitStreak'
 
 export const Dashboard = () => {
   const dispatch = useDispatch()
-  const habits = useSelector((state) => state.userProfile.user.personalHabits)
-  console.log(habits.length)
+  //const habits = useSelector((state) => state.userProfile.user.personalHabits)
+  const habits = useSelector((state) => state.personalHabits.list.items)
   const [open, setOpen] = useState(false)
   const noItems = habits.length <= 0
   const startTime = moment().startOf('day').unix();
-  console.log(startTime)
   const handleOnClick = (habit) => {
     dispatch(personalHabits.actions.doneToday(habit));
   }
@@ -69,7 +68,7 @@ export const Dashboard = () => {
                     {disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">💪 Already done today</span></Tooltip>}
                   </ItemBox>
                 </DashboardView>
-                {opened && <MonthlyStats category={habit.category} timeStamp={habit.timeStamp} />}
+                {opened && <Stats category={habit.category} timeStamp={habit.timeStamp} />}
               </div>
             )
           })}

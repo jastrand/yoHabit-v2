@@ -36,28 +36,38 @@ export const HabitInput = () => {
 
   return (
     <Form onSubmit={handleOnSubmit}>
-      <Label>
-        Add your own habit:
+      <Wrapper>
+        <Label>
+          Add your own habit:
       </Label>
-      <Input
-        type="text"
-        onChange={e => setInputValue(e.target.value)}
-        value={inputValue}
-      ></Input>
+        <Input
+          type="text"
+          onChange={e => setInputValue(e.target.value)}
+          value={inputValue}
+        ></Input>
+      </Wrapper>
       <ItemButton
         color="#2980b9"
         type="submit"
-        value="Add"
-      >Add</ItemButton>
+        value="add"
+      >+</ItemButton>
     </Form>
   )
 }
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  background-color: tomato;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  width: 300px;
+
+  @media (max-width: 400px) {
+    max-width: 270px;
+  }
 `
 
 const Input = styled.input`
@@ -65,11 +75,19 @@ const Input = styled.input`
   border: none;
   border-bottom: 1px solid;
   border-color: #86c1e9;
-  margin: 10px;
+  margin: 0;
 `
 
 const Label = styled.label`
   font-size: 20px;
-  color: #86c1e9;  
+  color: #fff;
   margin-right: 10px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+`
+const Wrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 0 10px 0 10px;
 `
