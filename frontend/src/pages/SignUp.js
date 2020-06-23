@@ -21,7 +21,7 @@ export const SignUp = () => {
       alert('Passwords do not match')
     } else {
 
-      fetch('http://localhost:8080/users', {
+      fetch('https://yohabit.herokuapp.com/users', {
         method: 'POST',
         body: JSON.stringify({ name, email, password }),
         headers: { 'Content-Type': 'application/json' }
