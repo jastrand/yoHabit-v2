@@ -139,25 +139,52 @@ app.post('/users/:id/habits', async (req, res) => {
 })
 
 //put endpoint for doneTone
-app.post('/users/:id/habits', async (req, res) => {
-  const timeStamp = new Date().unix();
-  const existingItem = await User.findOne({ _id: req.params.id, personalHabits: title })
-  const startTime = moment().startOf('day').unix();
-  const lastEntry = existingItem.timeStamp[existingItem.timeStamp.length - 1]
+app.post('/users/habits/:habitId', async (req, res) => {
+  try {
+    const { habitId } = req.params
+    // const existingUser = await User.findOne({ _id: id })
+    // console.log(existingUser)
+    // const existingHabit = existingUser.personalHabits.find(item => item.id === habitId)
+    // console.log(existingHabit)
 
-  if (existingItem.timeStamp.length === 0) {
-    const user = await User.findOneAndUpdate({ _id: req.params.id },
-      { $push: { timeStamp: { timeStamp } } },
-      { new: true })
-    res.json(user)
-
-  } else if (lastEntry < startTime) {
-    const user = await User.findOneAndUpdate({ _id: req.params.id },
-      { $push: { timeStamp: { timeStamp } } },
-      { new: true })
-    res.json(user)
+    const timeStamp = moment().unix();
+    console.log(timeStamp)
+    const doneToday = await User.findOneAndUpdate({ 'personalHabits.id': habitId },
+      { $push: { 'personalHabits.$.timeStamp': { 'timeStamp': timeStamp } } },
+      { new: true, upsert: true }
+    )
+    res.json(doneToday)
+    console.log(timeStamp)
+    console.log(doneToday)
+  } catch (err) {
+    res.status(400).json({ message: 'Could not update timestamp', error: err.errors })
   }
 })
+//   const { habit } = req.body
+//   const title = habit.title
+//   const habitId = habit.id
+//   const { id } = req.params
+//   const existingUser = await User.findOne({ _id: id })
+//   const existingHabit = existingUser.personalHabits.find(item => item.habit === title)
+//   console.log(existingHabit)
+//   const timeStamp = req.body.moment().unix();
+//   console.log(timeStamp)
+//   const startTime = moment().startOf('day').unix();
+//   const lastEntry = existingItem.timeStamp[existingItem.timeStamp.length - 1]
+
+//   if (existingItem.timeStamp.length === 0) {
+//     const user = await User.findOneAndUpdate({ _id: id, personalHabits: title },
+//       { $push: { personalHabits: { id: habitId, habit: title, timeStamp: [timeStamp] } } },
+//       { new: true })
+//     res.json(user)
+
+//   } else if (lastEntry < startTime) {
+//     const user = await User.findOneAndUpdate({ _id: id, personalHabits: title },
+//       { $push: { id: habitId, habit: title, timeStamp: [timeStamp] } },
+//       { new: true })
+//     res.json(user)
+//   }
+// })
 
 
 // //delete habit

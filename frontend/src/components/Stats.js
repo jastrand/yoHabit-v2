@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { MonthlyStats } from '../components/MonthlyStats'
+import { HighestStreak } from '../components/HighestStreak'
 import { RandomMotivation } from '../components/RandomMotivation'
 
 export const Stats = ({ timeStamp, category }) => {
@@ -48,6 +49,10 @@ export const Stats = ({ timeStamp, category }) => {
         <Container>
           <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>
           <MonthlyStats timeStamp={timeStamp} />
+        </Container>
+        <Container>
+          <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>your highest streak:</ItemText></TitleSpan>
+          <HighestStreak timeStamp={timeStamp} />
         </Container>
       </Section>
       <RandomMotivation />

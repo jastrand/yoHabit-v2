@@ -39,6 +39,7 @@ export const ItemText = styled.p`
   margin: 0;
   font-size: ${props => props.fontSize || "20px"};
   text-transform: uppercase;
+  font-family: 'Raleway',sans-serif;
 `
 export const TextWrapper = styled.div`
   display: flex;

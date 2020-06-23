@@ -13,7 +13,6 @@ export const personalHabits = createSlice({
   initialState: initialState,
   reducers: {
     addItem: (state, action) => {
-      //const timeStamp = moment().unix()
       const existingItem = state.list.items.find((item) => item.id === action.payload.id)
       if (!existingItem) {
         state.list.items.push({ ...action.payload, timeStamp: [] })

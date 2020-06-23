@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userProfile } from '../reducers/userinfo'
-import { ImageForm } from '../components/ImageForm'
 import { Dashboard } from '../components/Dashboard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
@@ -12,11 +11,8 @@ export const MyProfile = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [message, setMessage] = useState()
-  //const [habits, setHabits] = useState()
-  const [showForm, setShowForm] = useState(false)
   const token = useSelector((state) => state.userProfile.user.accessToken)
   const image = useSelector((state) => state.userProfile.user.profileImage)
-  //const habits = useSelector((state) => state.userProfile.user.personalHabits)
   const habits = useSelector((state) => state.personalHabits.list.items)
 
   console.log(habits)
@@ -42,11 +38,9 @@ export const MyProfile = () => {
     <Container>
       <Wrapper>
         <ImgWrapper>
-          <ImgText onClick={() => setShowForm(!showForm)}><span role="img" aria-label="Camera">📷</span></ImgText>
           {!image && <FontAwesomeIcon color="#fff" size="5x" icon={faUserCircle} />}
-          {image && <Image src={image} alt="profile picture"></Image>}
         </ImgWrapper>
-        {showForm && <ImageForm function={setShowForm} />}
+
         <TextWrapper>
           <WelcomeText>{message}</WelcomeText>
           {token &&
@@ -56,6 +50,7 @@ export const MyProfile = () => {
             </div>}
         </TextWrapper>
       </Wrapper>
+
       {token &&
         <ProfileWrapper>
           <Dashboard />
@@ -117,12 +112,6 @@ const ImgWrapper = styled.div`
   border-radius: 50%;
 `
 
-const Image = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-
-`
 const Container = styled.div`
   height: 100%;
   display: flex;
@@ -132,8 +121,4 @@ const Container = styled.div`
   background-color: rgb(247,247,247);
   padding: 30px;
   margin: 5px 0 5px 0;
-`
-
-const ImgText = styled.button`
- 
 `

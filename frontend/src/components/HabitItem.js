@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { personalHabits } from '../reducers/personalHabits'
-//import { fetchDashboard } from '../reducers/userinfo'
 import { ItemBox, ItemText, ItemButton, Category, ItemWrapper } from '../components/ItemStyle'
 
 
 // This component is for each individual habit, it prints the value on the settings page for habits and adds it to each users personal dashboard.
-
 export const HabitItem = ({ habit }) => {
   const dispatch = useDispatch();
   const [added, setAdded] = useState(false);
   const [category, setCategory] = useState('weekly')
-  //const id = useSelector((state) => state.userProfile.user.id)
 
   const handleOnClick = () => {
     if (!added) {

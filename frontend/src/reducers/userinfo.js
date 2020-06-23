@@ -65,6 +65,27 @@ export const fetchDashboard = ({ id, habit, accessToken, category }) => {
   };
 };
 
+// donetoday
+export const doneToday = (timeStamp, habitId) => {
+  const URL = `https://yohabit.herokuapp.com/users/habits/${habitId}`;
+  return (dispatch, getState) => {
+    const accessToken = getState().userProfile.user.accessToken
+    fetch(URL, {
+      method: "POST",
+      body: JSON.stringify({ timeStamp }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(userProfile.actions.setHabits({ personalHabits: data.personalHabits }));
+        console.log(personalHabits)
+      });
+  };
+};
+
 
 //delete habit from backend
 export const deleteHabit = (id) => {
