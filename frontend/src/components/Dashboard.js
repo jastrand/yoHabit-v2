@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { personalHabits } from '../reducers/personalHabits'
-import { userProfile } from '../reducers/userinfo'
+//import { userProfile } from '../reducers/userinfo'
 import {
   ItemBox,
   ItemText,
