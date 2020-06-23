@@ -22,7 +22,7 @@ export const MyProfile = () => {
   console.log(habits)
 
   useEffect(() => {
-    fetch('http://localhost:8080/profile', {
+    fetch('https://yohabit.herokuapp.com/profile', {
       method: 'GET',
       headers: { 'Authorization': token, 'Content-Type': 'application/json' }
     })

@@ -46,7 +46,7 @@ export const userProfile = createSlice({
 
 // Sends the habit from settings page to backend
 export const fetchDashboard = ({ id, habit, accessToken, category }) => {
-  const URL = `http://localhost:8080/users/${id}`;
+  const URL = `https://yohabit.herokuapp.com//users/${id}`;
   return (dispatch) => {
     fetch(URL, {
       method: "POST",

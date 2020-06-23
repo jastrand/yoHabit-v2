@@ -12,7 +12,7 @@ export const ImageForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.function(false)
-    fetch(`http://localhost:8080/users/${id}`, {
+    fetch(`https://yohabit.herokuapp.com/users/${id}`, {
       method: 'POST',
       body: JSON.stringify({ image: imageUrl }),
       headers: { 'Content-Type': 'application/json' }
