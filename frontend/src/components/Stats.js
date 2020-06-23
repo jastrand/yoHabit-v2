@@ -8,6 +8,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { MonthlyStats } from '../components/MonthlyStats'
 import { HighestStreak } from '../components/HighestStreak'
 import { RandomMotivation } from '../components/RandomMotivation'
+import { StreakCount } from '../components/StreakCount'
 
 export const Stats = ({ timeStamp, category }) => {
 
@@ -42,9 +43,7 @@ export const Stats = ({ timeStamp, category }) => {
               </Dates>
             ))}
           </DateWrapper>
-          <StreakCount>
-            {category === 'weekly' ? timeStamp.length + "/7 days completed" : timeStamp.length + "/30 days completed"}
-          </StreakCount>
+          <StreakCount timeStamp={timeStamp} category={category} />
         </Container>
         <Container>
           <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>
@@ -95,13 +94,6 @@ const Span = styled.span`
 `
 const TitleSpan = styled.span`
   align-self: center;
-`
-export const StreakCount = styled.p`
-  font-size: 18px;
-  align-self: center;
-  color: white;
-  text-transform: uppercase; 
-  margin-bottom: 10px;
 `
 
 const Dates = styled.p`

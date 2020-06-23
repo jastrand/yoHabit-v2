@@ -149,7 +149,7 @@ app.post('/users/habits/:habitId', async (req, res) => {
 
     const timeStamp = moment().unix();
     console.log(timeStamp)
-    const doneToday = await User.findOneAndUpdate({ 'personalHabits.id': habitId },
+    const doneToday = await User.findOneAndUpdate({ 'personalHabits._id': habitId },
       { $push: { 'personalHabits.$.timeStamp': { 'timeStamp': timeStamp } } },
       { new: true, upsert: true }
     )

@@ -1,11 +1,8 @@
 import React from 'react'
-import { ItemText } from '../components/ItemStyle'
+import styled from 'styled-components'
 import moment from 'moment'
 
-// This component filters the timeStamp based on the selection from the user "monthly" or "weekly"
-
-export const HabitStreak = ({ timeStamp, category }) => {
-
+export const StreakCount = ({ timeStamp, category }) => {
   // Start & End for category === week 
   const weekStart = moment().startOf('isoweek').format('ll')
   const weekEnd = moment().endOf('isoweek').format('ll')
@@ -31,11 +28,17 @@ export const HabitStreak = ({ timeStamp, category }) => {
   const filteredHabits = filterStreak()
 
   return (
-    <ItemText habitDone={habitDone} color="white">
-      {category === 'weekly' ? "This week: " : "This month: "} {filteredHabits.length} times
-    </ItemText>
-
+    <Streak filteredHabits={filteredHabits}>
+      {category === 'weekly' ? filteredHabits.length + "/7 days completed" : filteredHabits.length + "/30 days completed"}
+    </Streak>
   )
 }
 
 
+export const Streak = styled.p`
+  font-size: 18px;
+  align-self: center;
+  color: white;
+  text-transform: uppercase; 
+  margin-bottom: 10px;
+`
