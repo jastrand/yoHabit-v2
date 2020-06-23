@@ -129,12 +129,13 @@ app.post('/users/:id/habits', async (req, res) => {
 
     const existingUser = await User.findOne(_id)
     console.log(JSON.stringify(existingUser))
-    const existingHabit = existingUser.personalHabits.find(item => item.tile === habit.title);
+    const existingHabit = existingUser.personalHabits.find(item => item.title === habit.title);
     console.log(JSON.stringify(existingHabit))
 
-    const existingItem = await User.findOne({ _id }, { 'personalHabits.string': title })
+    const existingItem = await User.findOne({ _id }, { 'personalHabits.title': title })
 
     if (!existingItem) {
+      const { userId: _id } = req.params
       const user = await User.findOneAndUpdate(_id,
         { $push: { personalHabits: { id: habitId, habit: title, category } } },
         { new: true }
@@ -153,7 +154,7 @@ app.post('/users/:id/habits', async (req, res) => {
 
 //put endpoint for doneTone
 app.put('/users/:id/habits', async (req, res) => {
-  const timeStamp = moment().unix();
+  const timeStamp = new Date().unix();
   const existingItem = await User.findOne({ _id: req.params.id, personalHabits: title })
   const startTime = moment().startOf('day').unix();
   const lastEntry = existingItem.timeStamp[existingItem.timeStamp.length - 1]
