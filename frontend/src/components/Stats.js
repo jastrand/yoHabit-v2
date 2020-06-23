@@ -95,7 +95,8 @@ export const StreakCount = styled.p`
   font-size: 18px;
   align-self: center;
   color: white;
-  margin-top: 0;
+  text-transform: uppercase; 
+  margin-bottom: 10px;
 `
 
 const Dates = styled.p`

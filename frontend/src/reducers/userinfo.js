@@ -25,7 +25,7 @@ export const userProfile = createSlice({
       state.user.imageUrl = imageUrl;
       state.user.personalHabits = personalHabits;
     },
-    //reduer to set id and token to false when user logs out
+    //reducer to set id and token to false when user logs out
     logOut: (state) => {
       state.user.id = false;
       state.user.accessToken = false;

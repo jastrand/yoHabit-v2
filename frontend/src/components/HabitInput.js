@@ -63,7 +63,7 @@ const Form = styled.form`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 50px;
-  width: 300px;
+  min-width: fit-content;
 
   @media (max-width: 400px) {
     max-width: 270px;

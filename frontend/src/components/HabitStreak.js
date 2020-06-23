@@ -22,6 +22,8 @@ export const HabitStreak = ({ timeStamp, category }) => {
 
   const filteredHabits = filterStreak()
 
+
+
   return (
     <ItemText habitDone={habitDone} color="white">
       {category === 'weekly' ? "This week: " : "This month: "} {filteredHabits.length} times

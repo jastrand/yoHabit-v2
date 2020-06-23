@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt-nodejs'
 import moment from 'moment'
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/yohabit"
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true })
 mongoose.Promise = Promise
 
 
@@ -36,7 +36,7 @@ const User = mongoose.model('User', {
   personalHabits: [{
     habit: String,
     category: String,
-    id: String,
+    id: Number,
     timeStamp: [],
   }]
 })
@@ -120,40 +120,26 @@ app.get('/users/:id', async (req, res) => {
 
 // post a new habit
 app.post('/users/:id/habits', async (req, res) => {
-
-  try {
-    const { habit, category } = req.body
-    const title = habit.title
-    const habitId = habit.id
-    const { userId: _id } = req.params
-
-    const existingUser = await User.findOne(_id)
-    console.log(JSON.stringify(existingUser))
-    const existingHabit = existingUser.personalHabits.find(item => item.title === habit.title);
-    console.log(JSON.stringify(existingHabit))
-
-    const existingItem = await User.findOne({ _id }, { 'personalHabits.title': title })
-
-    if (!existingItem) {
-      const { userId: _id } = req.params
-      const user = await User.findOneAndUpdate(_id,
-        { $push: { personalHabits: { id: habitId, habit: title, category } } },
-        { new: true }
-      )
-      res.json(user)
-
-    } else {
-      console.log(JSON.stringify("already exist"))
-    }
-  }
-
-  catch (err) {
-    res.status(400).json({ message: "Could not create habit", error: err })
+  const { habit, category } = req.body
+  const title = habit.title
+  const habitId = habit.id
+  const { id } = req.params
+  const existingUser = await User.findOne({ _id: id })
+  const existingHabit = existingUser.personalHabits.find(item => item.habit === title)
+  if (existingHabit) {
+    console.log("already exist")
+    res.json(existingUser)
+  } else {
+    const user = await User.findOneAndUpdate({ _id: id },
+      { $push: { personalHabits: { id: habitId, habit: title, category } } },
+      { new: true }
+    )
+    res.json(user)
   }
 })
 
 //put endpoint for doneTone
-app.put('/users/:id/habits', async (req, res) => {
+app.post('/users/:id/habits', async (req, res) => {
   const timeStamp = new Date().unix();
   const existingItem = await User.findOne({ _id: req.params.id, personalHabits: title })
   const startTime = moment().startOf('day').unix();
