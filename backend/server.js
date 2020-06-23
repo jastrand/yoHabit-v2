@@ -110,6 +110,14 @@ app.post('/users/:id', async (req, res) => {
   res.json({ imageURL: user.profileImage })
 })
 
+// check specific user
+//app.get('/users/:id', authenticateUser)
+app.get('/users/:id', async (req, res) => {
+  const { userId: _id, } = req.params
+  const user = await User.findOne(_id)
+  res.json({ user })
+})
+
 // post a new habit
 app.post('/users/:id/habits', async (req, res) => {
 
@@ -117,19 +125,27 @@ app.post('/users/:id/habits', async (req, res) => {
     const { habit, category } = req.body
     const title = habit.title
     const habitId = habit.id
-    const existingItem = await User.findOne({ _id: req.params.id, personalHabits: title })
+    const { userId: _id } = req.params
 
-    if (existingItem) {
-      return
-    } else {
+    const existingUser = await User.findOne(_id)
+    console.log(JSON.stringify(existingUser))
+    const existingHabit = existingUser.personalHabits.find(item => item.tile === habit.title);
+    console.log(JSON.stringify(existingHabit))
 
-      const user = await User.findOneAndUpdate({ _id: req.params.id },
+    const existingItem = await User.findOne({ _id: req.params.id }, { 'personalHabits.string': title })
+
+    if (!existingItem) {
+      const user = await User.findOneAndUpdate(_id,
         { $push: { personalHabits: { id: habitId, habit: title, category } } },
         { new: true }
       )
       res.json(user)
+
+    } else {
+      console.log(JSON.stringify("already exist"))
     }
   }
+
   catch (err) {
     res.status(400).json({ message: "Could not create habit", error: err })
   }
