@@ -9,8 +9,8 @@ export const ItemBox = styled.div`
   width: ${props => props.width || "300px"};
   border-radius: 8px;
   margin: 5px;
-  padding: 12px 8px 8px 12px;
   height: 60px;
+  padding: ${props => props.padding || "10px"};
 
   @media (max-width: 400px) {
     max-width: 250px;
@@ -48,9 +48,9 @@ export const TextWrapper = styled.div`
 `
 export const DashboardView = styled.div`
   display: flex; 
-  flex-direction: row;
   justify-content: center;
-  flex-wrap: nowrap;
+  align-items: center;
+  padding: 5px;
 
   @media (max-width: 400px) {
     flex-direction: column;
@@ -116,7 +116,6 @@ export const AddButton = styled.button`
   background-color: transparent;
   padding: 0;
   font-size: 25px;
-  margin: 0;
 
   &:hover {
     transform: scale(1.3);

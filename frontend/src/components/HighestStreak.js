@@ -1,28 +1,27 @@
 import React from 'react'
-import moment from 'moment'
 import styled from 'styled-components'
 
 export const HighestStreak = ({ timeStamp }) => {
 
-  const unixDates = timeStamp.map((d) => moment(d).unix())
+  // i variable is needed to know whick inner array currently working on. Each inner array will represent a sequence of dates. 
 
-  // stack is an array containing arrays, so i variable is needed to know what inner array we're currently working on. Each inner array will represent a sequence of dates. So in this example it should have 3 arrays.. so [ [2 juni], [15 juni, 16 juni], [20 juni, 22 juni, 23 juni, 24, juni] ] -- one array containing 3 inner arrays.
   // eslint-disable-next-line
-  const i = 0;
-  const result = unixDates.reduce((accumulator, current) => {
+  let i = 0;
+  const result = timeStamp.reduce((accumulator, current) => {
 
-    // cur is the current inner array 
+    // current inner array
     const cur = accumulator[i]
-    // is the last date added to an inner array, if the current inner array is empty it will be 0
+
+    // last date in the inner array, if array is empty return 0
     const a = cur ? cur[cur.length - 1] : 0
 
-    // 86400000 represents 24h, so if current date is larger than the last date added in the inner array then we should add 1 to i to create a new inner array (new sequence)
-    if (current - a > 86400000) {
+    // 86400 represents 24h, so if current date is larger than the last date added in the inner array then we should add 1 to i to create a new inner array 
+
+    if (current - a > 86400 && a !== 0) {
       // eslint-disable-next-line
       i++
     }
     // if current inner array is undefined and hasn't been created yet, it will be done:
-
     if (!accumulator[i]) {
       accumulator[i] = []
     }
@@ -34,7 +33,7 @@ export const HighestStreak = ({ timeStamp }) => {
     return accumulator
   }, [])
 
-  // map function will give you the lengths of inner arrays, so we will have one array with numbers like [1, 2, 4] and then we get the max (highest) number in this array
+  // length of the array in the correct order, highest streak 
   const maxSequence = Math.max.apply(null, result.map(x => x.length))
 
   return (
@@ -54,6 +53,7 @@ const StreakWrapper = styled.div`
 const Streak = styled.p`
   font-size: 60px;
   color: white;
-  text-shadow: 2px 2px #ff0000;
+  text-shadow: 5px 2px #ff0000;
   margin-top: 0;
+  animation: pulse 5s infinite;
 `

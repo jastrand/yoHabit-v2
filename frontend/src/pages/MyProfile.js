@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { userProfile } from '../reducers/userinfo'
+import { useSelector } from 'react-redux'
 import { Dashboard } from '../components/Dashboard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 export const MyProfile = () => {
-  const dispatch = useDispatch()
-  const history = useHistory()
   const [message, setMessage] = useState()
   const token = useSelector((state) => state.userProfile.user.accessToken)
   const image = useSelector((state) => state.userProfile.user.profileImage)
@@ -27,34 +23,29 @@ export const MyProfile = () => {
         setMessage(data.message))
   }, [token])
 
-  const LogOut = () => {
-    dispatch(userProfile.actions.logOut())
-    history.push('/')
-  }
-
   const numberOfHabits = habits.length
 
   return (
     <Container>
       <Wrapper>
-        <ImgWrapper>
-          {!image && <FontAwesomeIcon color="#fff" size="5x" icon={faUserCircle} />}
-        </ImgWrapper>
+        {token &&
+          <ImgWrapper>
+            {!image && <FontAwesomeIcon color="#fff" size="5x" icon={faUserCircle} />}
+          </ImgWrapper>}
 
         <TextWrapper>
           <WelcomeText>{message}</WelcomeText>
           {token &&
-            <div>
+            <Wrap>
               <Text>Habits:</Text>
               <Text>{numberOfHabits}</Text>
-            </div>}
+            </Wrap>}
         </TextWrapper>
       </Wrapper>
 
       {token &&
         <ProfileWrapper>
           <Dashboard />
-          <Logout onClick={() => LogOut()}>Log out</Logout>
         </ProfileWrapper>}
     </Container>
   )
@@ -63,14 +54,13 @@ export const MyProfile = () => {
 const WelcomeText = styled.p`
   font-size: 30px;
   color: #fff;
-  margin: 0 0 0 20px;
-  align-self: flex-start;
+  margin: 0;
 `
 const Text = styled.p`
   font-size: 15px;
   font-weight: bold;
-  color: #fff;
-  margin: 0 0 0 20px;
+  margin: 2px;
+  color: white;
 `
 const Wrapper = styled.div`
   display: flex;
@@ -89,25 +79,17 @@ const ProfileWrapper = styled.div`
   justify-content: center;
 `
 const TextWrapper = styled.div`
-  
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
 `
 
-const Logout = styled.button`
-  font-size: 15px;
-  background-color: transparent;
-  border-radius: 12px;
-  margin: 10px 0 0 0;
-  color: red;
-  border-color: red;
-  padding: 14px;
-
-  &:hover {
-    background: red;
-    color: white;
-    transform: scale(1.1);
-    cursor: pointer;
-  }
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
 `
+
 const ImgWrapper = styled.div`
   border-radius: 50%;
 `

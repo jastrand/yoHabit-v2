@@ -1,29 +1,28 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { personalHabits } from '../reducers/personalHabits'
 import { ItemBox, ItemText, ItemButton, Category, ItemWrapper } from '../components/ItemStyle'
 
-
-// This component is for each individual habit, it prints the value on the settings page for habits and adds it to each users personal dashboard.
 export const HabitItem = ({ habit }) => {
   const dispatch = useDispatch();
-  const [added, setAdded] = useState(false);
   const [category, setCategory] = useState('weekly')
+  const habits = useSelector((state) => state.personalHabits.list.items)
+  const existingHabit = habits.find(item => item.id === habit.id)
+
+  console.log(existingHabit)
 
   const handleOnClick = () => {
-    if (!added) {
+    if (!existingHabit) {
       dispatch(personalHabits.actions.addItem({ ...habit, category }))
-      //dispatch(fetchDashboard({ id, habit, category }))
     } else {
       dispatch(personalHabits.actions.removeItem({
         habit: habit
       }));
     }
-    setAdded(!added);
   }
 
   return (
-    <ItemBox color="#85C1E9">
+    <ItemBox color="#85C1E9" padding="15px">
       <ItemWrapper>
         <ItemText>{habit.title}</ItemText>
         <Category
@@ -34,8 +33,8 @@ export const HabitItem = ({ habit }) => {
           <option value='monthly'>Monthly</option>
         </Category>
       </ItemWrapper>
-      <ItemButton color={!added ? "#2980B9" : "red"} type="button" onClick={handleOnClick}>
-        {!added ? "+" : "X"}
+      <ItemButton color={!existingHabit ? "#2980B9" : "tomato"} type="button" onClick={handleOnClick}>
+        {!existingHabit ? "+" : "-"}
       </ItemButton>
     </ItemBox>
   );

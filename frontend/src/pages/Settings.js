@@ -5,7 +5,6 @@ import { HabitSettings } from '../components/HabitSettings'
 import { BackIcon } from '../assets/BackIcon'
 import { HabitInput } from '../components/HabitInput'
 
-// this component is the users settings page 
 
 export const Settings = () => {
   return (

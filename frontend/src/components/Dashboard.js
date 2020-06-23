@@ -57,13 +57,13 @@ export const Dashboard = () => {
                       </Progressbar>
                     </Background>
                   </Container>
-                  <ItemBox color="whitesmoke" width="40px">
+                  <ItemBox width="40px">
                     <AddButton
                       onClick={() => handleOnClick(habit)}
                       disabled={disabled ? "disabled" : ""}>
                       <FontAwesomeIcon color={disabled ? "e4e9ed" : "#48c9b0"} icon={faCheckCircle} /></AddButton>
-                    {!disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">Click to add as done</span></Tooltip>}
-                    {disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">💪 Already done today</span></Tooltip>}
+                    {!disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">Done?</span></Tooltip>}
+                    {disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">💪 Done!</span></Tooltip>}
                   </ItemBox>
                 </DashboardView>
                 {opened && <Stats category={habit.category} timeStamp={habit.timeStamp} />}
