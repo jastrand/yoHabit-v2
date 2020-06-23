@@ -132,7 +132,7 @@ app.post('/users/:id/habits', async (req, res) => {
     const existingHabit = existingUser.personalHabits.find(item => item.tile === habit.title);
     console.log(JSON.stringify(existingHabit))
 
-    const existingItem = await User.findOne({ _id: req.params.id }, { 'personalHabits.string': title })
+    const existingItem = await User.findOne({ _id }, { 'personalHabits.string': title })
 
     if (!existingItem) {
       const user = await User.findOneAndUpdate(_id,
