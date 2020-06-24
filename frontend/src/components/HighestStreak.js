@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 export const HighestStreak = ({ timeStamp }) => {
 
-  console.log(timeStamp)
   // i variable is needed to know whick inner array currently working on. Each inner array will represent a sequence of dates. 
 
   // eslint-disable-next-line
