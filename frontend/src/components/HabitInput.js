@@ -71,7 +71,6 @@ const Form = styled.form`
 `
 
 const Input = styled.input`
-  font-size: 20px;
   border: none;
   border-bottom: 1px solid;
   border-color: #86c1e9;

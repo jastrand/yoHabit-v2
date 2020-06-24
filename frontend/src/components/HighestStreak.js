@@ -19,7 +19,7 @@ export const HighestStreak = ({ timeStamp }) => {
 
     // 86400 represents 24h, so if current date is larger than the last date added in the inner array then add 1 to i to create a new inner array 
 
-    if (current - a > 86400 && a !== 0) {
+    if (current - a > 90000 && a !== 0) {
       // eslint-disable-next-line
       i++
     }
