@@ -18,13 +18,11 @@ export const Stats = ({ timeStamp, category }) => {
     day.setDate(day.getDate() - i)
     return moment(day).format("dddd")
   })
-  console.log(dates)
 
   // array of which timeStamps each user have and return from unix to name of the day
   const getTimes = timeStamp.map((time) => {
     return moment.unix(time).format("dddd")
   })
-  console.log(getTimes)
 
   return (
     <div>
@@ -50,7 +48,7 @@ export const Stats = ({ timeStamp, category }) => {
           <MonthlyStats timeStamp={timeStamp} />
         </Container>
         <Container>
-          <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>your highest streak:</ItemText></TitleSpan>
+          <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>your best streak:</ItemText></TitleSpan>
           <HighestStreak timeStamp={timeStamp} />
         </Container>
       </Section>

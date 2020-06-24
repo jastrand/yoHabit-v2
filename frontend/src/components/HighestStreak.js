@@ -45,7 +45,7 @@ export const HighestStreak = ({ timeStamp }) => {
 
   return (
     <StreakWrapper>
-      <Streak>{notInfinity ? maxSequence : "0"}</Streak>
+      <Streak>{notInfinity ? maxSequence : "Let's go!"}</Streak>
     </StreakWrapper>
   )
 }
@@ -58,9 +58,17 @@ const StreakWrapper = styled.div`
     height: 100%;
 `
 const Streak = styled.p`
-  font-size: 60px;
+  font-size: 70px;
   color: white;
   text-shadow: 5px 2px #ff0000;
   margin-top: 0;
-  animation: pulse 5s infinite;
+  text-shadow:
+  0.05em 0 black,
+  0 0.05em black,
+  -0.05em 0 black,
+  0 -0.05em black,
+  -0.05em -0.05em black,
+  -0.05em 0.05em black,
+  0.05em -0.05em black,
+  0.05em 0.05em black;
 `

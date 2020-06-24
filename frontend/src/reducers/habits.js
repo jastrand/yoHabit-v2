@@ -4,12 +4,12 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   name: "Habit data",
   habitData: [
-    { id: 1, title: 'Walk 10k steps' },
-    { id: 2, title: 'Drink 2L Water' },
-    { id: 3, title: 'Sleep 8 hours' },
+    { id: 1, title: 'Walk 70k steps' },
+    { id: 2, title: 'Create an app' },
+    { id: 3, title: 'Running' },
     { id: 4, title: 'Meditate' },
     { id: 5, title: 'Read a book' },
-    { id: 6, title: 'Watch YouTube' },
+    { id: 6, title: 'Hobby project' },
     { id: 7, title: 'Eat a vegetarian meal' },
     { id: 8, title: 'Make someone smile' },
     { id: 9, title: 'Take vitamins' },

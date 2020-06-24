@@ -22,6 +22,7 @@ export const EmptyList = () => {
 }
 
 const TextWrapper = styled.section`
+  height: 500px;
 `
 
 

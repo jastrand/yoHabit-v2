@@ -1,5 +1,5 @@
 import React from 'react'
-import { ItemText } from '../components/ItemStyle'
+import styled from 'styled-components'
 import moment from 'moment'
 
 // This component filters the timeStamp based on the selection from the user "monthly" or "weekly"
@@ -37,5 +37,12 @@ export const HabitStreak = ({ timeStamp, category }) => {
 
   )
 }
+
+export const ItemText = styled.p`
+  color: ${props => props.color || "white"};
+  margin: 0;
+  font-size: ${props => props.fontSize || "20px"};
+  text-transform: uppercase;
+`
 
 
