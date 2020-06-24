@@ -57,16 +57,16 @@ export const HabitInput = () => {
 
 const Form = styled.form`
   display: flex;
+  width:: 300px;
   justify-content: space-between;
   align-items: center;
-  background-color: tomato;
-  padding: 10px;
+  background-color: #4cc9b1;
+  padding: 15px;
   border-radius: 10px;
-  margin-bottom: 50px;
-  min-width: fit-content;
+  margin: 5px;
 
   @media (max-width: 400px) {
-    max-width: 270px;
+    max-width: 250px;
   }
 `
 
@@ -90,4 +90,5 @@ const Wrapper = styled.div`
   align-items: flex-start;
   flex-direction: column;
   margin: 0 10px 0 10px;
+  padding: 10px;
 `

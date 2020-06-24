@@ -11,8 +11,6 @@ export const MyProfile = () => {
   const image = useSelector((state) => state.userProfile.user.profileImage)
   const habits = useSelector((state) => state.personalHabits.list.items)
 
-  console.log(habits)
-
   useEffect(() => {
     fetch('https://yohabit.herokuapp.com/profile', {
       method: 'GET',

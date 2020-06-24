@@ -20,7 +20,6 @@ export const personalHabits = createSlice({
         return
       }
     },
-    // function not working fix later
     removeItem: (state, action) => {
       const { habit } = action.payload
       state.list.items = state.list.items.filter((item, index) => item.id !== habit.id)
@@ -35,11 +34,7 @@ export const personalHabits = createSlice({
       }
       const startTime = moment().startOf('day').unix();
       const lastEntry = existingItem.timeStamp[existingItem.timeStamp.length - 1]
-      console.log(lastEntry)
-      console.log(startTime)
-      console.log(existingItem)
       if (lastEntry < startTime) {
-        console.log("tjaaa")
         existingItem.timeStamp.push(timeStamp)
 
       } else {

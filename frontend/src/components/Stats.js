@@ -43,7 +43,7 @@ export const Stats = ({ timeStamp, category }) => {
               </Dates>
             ))}
           </DateWrapper>
-          <StreakCount timeStamp={timeStamp} category={category} />
+          <StreakCount timeStamp={timeStamp} category={category} getTimes={getTimes} />
         </Container>
         <Container>
           <TitleSpan><ItemText style={{ color: "white", fontSize: "23px" }}>Overview:</ItemText></TitleSpan>

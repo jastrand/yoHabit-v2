@@ -9,8 +9,6 @@ export const HabitItem = ({ habit }) => {
   const habits = useSelector((state) => state.personalHabits.list.items)
   const existingHabit = habits.find(item => item.id === habit.id)
 
-  console.log(existingHabit)
-
   const handleOnClick = () => {
     if (!existingHabit) {
       dispatch(personalHabits.actions.addItem({ ...habit, category }))

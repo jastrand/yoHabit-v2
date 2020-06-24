@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const HighestStreak = ({ timeStamp }) => {
 
+  console.log(timeStamp)
   // i variable is needed to know whick inner array currently working on. Each inner array will represent a sequence of dates. 
 
   // eslint-disable-next-line
@@ -15,7 +16,8 @@ export const HighestStreak = ({ timeStamp }) => {
     // last date in the inner array, if array is empty return 0
     const a = cur ? cur[cur.length - 1] : 0
 
-    // 86400 represents 24h, so if current date is larger than the last date added in the inner array then we should add 1 to i to create a new inner array 
+
+    // 86400 represents 24h, so if current date is larger than the last date added in the inner array then add 1 to i to create a new inner array 
 
     if (current - a > 86400 && a !== 0) {
       // eslint-disable-next-line
@@ -36,9 +38,14 @@ export const HighestStreak = ({ timeStamp }) => {
   // length of the array in the correct order, highest streak 
   const maxSequence = Math.max.apply(null, result.map(x => x.length))
 
+
+  // If there is no streak, infinity is returned so deal with that
+  const notInfinity = Number.isFinite(maxSequence)
+
+
   return (
     <StreakWrapper>
-      <Streak>{maxSequence}</Streak>
+      <Streak>{notInfinity ? maxSequence : "0"}</Streak>
     </StreakWrapper>
   )
 }

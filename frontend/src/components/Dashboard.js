@@ -35,28 +35,29 @@ export const Dashboard = () => {
         <div>
           <TitleSpan><ItemText color="tomato" fontSize="25px">Your streak:</ItemText></TitleSpan>
           {habits.map((habit, i) => {
-            console.log(habit)
             const opened = open === i
             const timeStamp = habit.timeStamp[habit.timeStamp.length - 1]
             const disabled = timeStamp > startTime
-            console.log(timeStamp)
-            console.log(disabled)
             return (
               <div key={i}>
                 <DashboardView>
-                  <Container color="#5dade2" >
+                  <Container color="#5dade2">
+
                     <TextWrapper>
                       <ItemText color="black" fontSize="20px">{habit.title}</ItemText>
                       <HabitStreak timeStamp={habit.timeStamp} category={habit.category} />
                     </TextWrapper>
+
                     <IconWrapper onClick={() => setOpen(opened ? false : i)}>
                       <FontAwesomeIcon color="white" icon={faAngleDoubleDown} />
                     </IconWrapper>
+
                     <Background>
                       <Progressbar percent={habit.category === 'weekly' ? habit.timeStamp.length * 14 : habit.timeStamp.length * 3.33}>
                       </Progressbar>
                     </Background>
                   </Container>
+
                   <ItemBox width="40px">
                     <AddButton
                       onClick={() => handleOnClick(habit)}
@@ -66,6 +67,7 @@ export const Dashboard = () => {
                     {disabled && <Tooltip><span role="img" aria-label="Flex-Bicep">💪 Done!</span></Tooltip>}
                   </ItemBox>
                 </DashboardView>
+
                 {opened && <Stats category={habit.category} timeStamp={habit.timeStamp} />}
               </div>
             )
