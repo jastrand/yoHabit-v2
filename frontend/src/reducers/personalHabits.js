@@ -34,9 +34,9 @@ export const personalHabits = createSlice({
       }
       const startTime = moment().startOf('day').unix();
       const lastEntry = existingItem.timeStamp[existingItem.timeStamp.length - 1]
+
       if (lastEntry < startTime) {
         existingItem.timeStamp.push(timeStamp)
-
       } else {
         return;
       }

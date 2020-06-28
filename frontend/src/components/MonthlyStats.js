@@ -11,7 +11,7 @@ export const MonthlyStats = ({ timeStamp }) => {
     return moment(day).format("MMM D")
   })
 
-  // timeStamp is the array for when an item is clicked /
+  // timeStamp is the array for when an item is clicked, returns format that matches the calendar view 
   const habitDone = timeStamp.map((time) => {
     return moment.unix(time).format("MMM D")
   })
