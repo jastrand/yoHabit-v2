@@ -4,7 +4,6 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt-nodejs'
-import moment from 'moment'
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/yohabit"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true })
@@ -65,8 +64,7 @@ app.use(bodyParser.json())
 // Routes goes here
 
 app.get('/', async (req, res) => {
-  const users = await User.find()
-  res.json(users)
+  res.json("YoHabit")
 })
 
 
