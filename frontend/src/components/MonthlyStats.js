@@ -4,12 +4,13 @@ import styled from 'styled-components'
 
 export const MonthlyStats = ({ timeStamp }) => {
 
-  // array of the last 30 days by name of month and day
+  // array of the last 30 days by name of month
   const dates = [...Array(30)].map((_, i) => {
     const day = new Date()
     day.setDate(day.getDate() - i)
     return moment(day).format("MMM D")
   })
+
 
   // timeStamp is the array for when an item is clicked, returns format that matches the calendar view 
   const habitDone = timeStamp.map((time) => {
@@ -45,4 +46,5 @@ const Month = styled.p`
   border-radius: 10px;
   font-family: 'Raleway',sans-serif;
   border: 1px solid white;
+  letter-spacing: 2px;
 `
