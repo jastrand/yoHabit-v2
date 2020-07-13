@@ -1,6 +1,6 @@
 # YoHabit
 
-YoHabit is a habit tracker built with Javascript, React, Redux and Node.js.
+YoHabit is a habit tracker built by me with Javascript, React as a framework for Frontend and Node.js for Backend. 
 
 The project is built following my own User Story: 
 
