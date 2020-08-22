@@ -20,7 +20,14 @@ The project is built following my own User Story:
 - Node.js
 - Express, Mongoose and MongoDB 
 
-## View it live
+## View it live (please give the sign up/in a few moments to wake up the database)
 
 Frontend: https://yohabit.netlify.app/
 Backend: https://yohabit.herokuapp.com/
+
+
+## BACKLOG
+- Log out on mobile
+- Move Personal habits from local state to the backend  
+- Add loading state 
+- Bug fixes
