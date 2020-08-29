@@ -16,7 +16,7 @@ The project is built following my own User Story:
 
 ## Tech used
 - Javascript ES6
-- React & Redux
+- React with React Hooks, Redux and Thunks
 - Node.js
 - Express, Mongoose and MongoDB 
 
